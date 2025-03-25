@@ -48,18 +48,6 @@ public:
 	//ダメージ処理
 	virtual bool SetDamage(int damage, float angle);							//取得
 
-	//重力を受けるか
-	void SetEnableGravity(bool enable) { m_bEnableGravity = enable; }			//設定
-	bool GetEnableGravity() { return m_bEnableGravity; }						//取得
-
-	//吹き飛び量
-	void SetBlowValue(D3DXVECTOR3 value) { m_BlowValue = value; }				//設定
-	D3DXVECTOR3 GetBlowValue() { return m_BlowValue; }							//取得
-
-	//すでに張り付いたか
-	void SetEnteredStick(bool enter) { m_bEnteredStick = enter; }	//設定
-	bool GetEnteredStick() { return m_bEnteredStick; }				//取得
-
 	//当たり判定の情報
 	CCollision* GetCollision() { return m_pCollision; }				//当たり判定の取得
 
@@ -72,9 +60,6 @@ private:
 	int m_nLife;							//体力
 	bool m_bOnStand;						//立っているか
 	float m_fRadiusSize;					//サイズの半径
-	bool m_bEnableGravity;					//重力を受けるか
-	D3DXVECTOR3 m_BlowValue;				//吹き飛びの量
-	bool m_bEnteredStick;					//一度でも
 	CCollision* m_pCollision;				//コリジョンの情報
 };
 
