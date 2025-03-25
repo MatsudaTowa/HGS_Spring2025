@@ -23,8 +23,6 @@ CGame_Character::CGame_Character(int nPriority) : CCharacter(nPriority)
 	m_nLife = LIFE;							//体力
 	m_bOnStand = false;						//立ち状態
 	m_fRadiusSize = SIZE_RADIUS;			//サイズの半径
-	m_bEnableGravity = true;				//重力を受ける
-	m_BlowValue = { 0.0f, 0.0f, 0.0f };		//吹き飛ぶ力
 
 	//当たり判定の生成
 	if (m_pCollision == nullptr)
@@ -103,12 +101,6 @@ void CGame_Character::UpdatePos()
 	//前回の位置を保存
 	OldPos = pos;
 
-	//重力の処理
-	if (m_bEnableGravity)
-	{
-		Move = GravityMove(Move);
-	}
-
 	//ゲームシーンなら判定
 	if (CManager::GetInstance()->GetScene()->GetMode() == CManager::GetInstance()->GetScene()->MODE_GAME)
 	{
@@ -118,13 +110,6 @@ void CGame_Character::UpdatePos()
 		//位置に移動量を加算
 		pos += Move;
 	}
-
-	//吹き飛び量を加算
-	pos += m_BlowValue;
-
-	//吹き飛び量を減衰
-	m_BlowValue.x += (0.0f - m_BlowValue.x) * 0.1f;
-	m_BlowValue.z += (0.0f - m_BlowValue.z) * 0.1f;
 
 	//移動量を減衰
 	Move.x += (0.0f - Move.x) * 0.5f;
