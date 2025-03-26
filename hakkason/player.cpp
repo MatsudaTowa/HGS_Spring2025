@@ -253,7 +253,7 @@ void CPlayer::UpdateCoolTime()
 			float fXZ = sqrtf((iter->GetPos().x - AttackPos.x) * (iter->GetPos().x - AttackPos.x) + (iter->GetPos().z - AttackPos.z) * (iter->GetPos().z - AttackPos.z)); //‹——£‚ğZo‚·‚é
 
 
-			if (fXZ <= 30.0f && !iter->GetPlayerBullet())
+			if (fXZ <= 45.0f && !iter->GetPlayerBullet())
 			{
 				CManager::GetInstance()->GetSound()->PlaySoundA(CSound::SOUND_LABEL_REFRECT);
 
