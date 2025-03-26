@@ -70,6 +70,8 @@ HRESULT CGame::Init()
 
 	SetWave(CWave::WAVE::ONE);
 
+	CManager::GetInstance()->GetSound()->PlaySoundA(CSound::SOUND_LABEL_GAME);
+
 	return S_OK;
 }
 
@@ -78,6 +80,7 @@ HRESULT CGame::Init()
 //============================
 void CGame::Uninit()
 {
+	CManager::GetInstance()->GetSound()->Stop();	//I—¹ˆ—
 	//I—¹ˆ—
 	CScene::Uninit();
 }

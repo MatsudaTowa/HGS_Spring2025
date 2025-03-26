@@ -153,6 +153,8 @@ void CEnemy::ShotBullet()
 		m_ShotFrame_Cnt = 0;
 
 		CBullet::Create(GetPos(), GetRot().y + D3DX_PI, 1.0f, false);
+
+		CManager::GetInstance()->GetSound()->PlaySoundA(CSound::SOUND_LABEL_SHOT);
 	}
 }
 

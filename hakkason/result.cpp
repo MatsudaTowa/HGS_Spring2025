@@ -38,6 +38,8 @@ CResult::~CResult()
 //============================
 HRESULT CResult::Init()
 {
+	CManager::GetInstance()->GetSound()->PlaySoundA(CSound::SOUND_LABEL_RESULT);
+
 	//ƒJƒƒ‰‚ğØ‚è‘Ö‚¦
 	CManager::GetInstance()->ChangeCamera(new CCamera_Result());
 
@@ -53,6 +55,8 @@ HRESULT CResult::Init()
 //============================
 void CResult::Uninit()
 {
+	CManager::GetInstance()->GetSound()->Stop();	//I—¹ˆ—
+
 	//I—¹ˆ—
 	CScene::Uninit();
 }

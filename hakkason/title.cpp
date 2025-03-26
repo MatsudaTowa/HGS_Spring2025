@@ -35,6 +35,7 @@ CTitle::~CTitle()
 HRESULT CTitle::Init()
 {
 	CTitleScreen::Create({ SCREEN_WIDTH * 0.5f,SCREEN_HEIGHT * 0.5f,0.0f });
+	CManager::GetInstance()->GetSound()->PlaySoundA(CSound::SOUND_LABEL_TITLE);
 	return S_OK;
 }
 
@@ -43,7 +44,7 @@ HRESULT CTitle::Init()
 //============================
 void CTitle::Uninit()
 {
-	//I—¹ˆ—
+	CManager::GetInstance()->GetSound()->Stop();	//I—¹ˆ—
 	CScene::Uninit();
 }
 
@@ -59,7 +60,7 @@ void CTitle::Update()
 	if (CManager::GetInstance()->GetFade()->GetEnd())
 	{
 		//ƒGƒ“ƒ^[‚Å‰æ–Ê‘JˆÚ
-		if (pManager->GetKeyboard()->GetTrigger(DIK_RETURN) || pManager->GetJoypad()->GetPress(CInputJoypad::JOYKEY_A) || pManager->GetJoypad()->GetPress(CInputJoypad::JOYKEY_START))
+		if (pManager->GetMouse()->GetTrigger((CInputMouse::MOUSEBUTTON_LEFT))||pManager->GetKeyboard()->GetTrigger(DIK_RETURN) || pManager->GetJoypad()->GetPress(CInputJoypad::JOYKEY_A) || pManager->GetJoypad()->GetPress(CInputJoypad::JOYKEY_START))
 		{
 			//ƒQ[ƒ€‚É‰æ–Ê‘JˆÚ
 			pManager->GetFade()->SetFade(CScene::MODE_GAME);

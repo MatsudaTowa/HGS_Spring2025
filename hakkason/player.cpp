@@ -221,6 +221,8 @@ void CPlayer::Attack()
 	//攻撃を押したら
 	if (CManager::GetInstance()->GetMouse()->GetTrigger(CInputMouse::MOUSEBUTTON_LEFT))
 	{
+		CManager::GetInstance()->GetSound()->PlaySoundA(CSound::SOUND_LABEL_SWING);
+
 		SetMotion(CPlayer::PLAYERMOTION_ACTION);	//モーション設定
 		m_nAttackCoolTime = ATTACK_COOLTIME;		//クールタイムを設定
 		//CBullet::Create(GetPos(), GetGoalRot().y + D3DX_PI, 1.0f, true);
@@ -253,6 +255,8 @@ void CPlayer::UpdateCoolTime()
 
 			if (fXZ <= 30.0f && !iter->GetPlayerBullet())
 			{
+				CManager::GetInstance()->GetSound()->PlaySoundA(CSound::SOUND_LABEL_REFRECT);
+
 				iter->GetSpeed() *= -1.3f;
 				iter->GetHansya()++;
 			}

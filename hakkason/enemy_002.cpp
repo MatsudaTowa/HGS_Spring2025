@@ -7,6 +7,7 @@
 #include "enemy_002.h"
 #include "bullet.h"
 #include "enemy_002_state.h"
+#include "manager.h"
 
 //Ã“Iƒƒ“ƒo‚Ì‰Šú‰»
 const std::string CEnemy_002::FILEPATH = "data\\motion_enemy002.txt";
@@ -108,6 +109,9 @@ void CEnemy_002::ShotBullet()
 		CBullet::Create(GetPos(), GetRot().y + D3DX_PI, 1.0f, false);
 		CBullet::Create(GetPos(), GetRot().y - QRTR_PI + D3DX_PI, 1.0f, false);
 		CBullet::Create(GetPos(), GetRot().y - HALF_PI + D3DX_PI, 1.0f, false);
+
+		CManager::GetInstance()->GetSound()->PlaySoundA(CSound::SOUND_LABEL_SHOT);
+
 	}
 	SetShotFrameCnt(nCnt);
 

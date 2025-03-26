@@ -6,6 +6,7 @@
 //================================
 #include "enemy_001.h"
 #include "bullet.h"
+#include "manager.h"
 
 //Ã“Iƒƒ“ƒo‚Ì‰Šú‰»
 const std::string CEnemy_001::FILEPATH = "data\\motion_enemy001.txt";
@@ -89,6 +90,8 @@ void CEnemy_001::ShotBullet()
 		++m_nBurstDelayCnt;
 		if (m_nBurstDelayCnt > BURST_DELAY_FRAME)
 		{
+			CManager::GetInstance()->GetSound()->PlaySoundA(CSound::SOUND_LABEL_SHOT);
+
 			m_nBurstDelayCnt = 0;
 			CBullet::Create(GetPos(), GetRot().y + D3DX_PI, 1.0f, false);
 			++m_nShotBullet;

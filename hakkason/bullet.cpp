@@ -162,6 +162,8 @@ void CBullet::Collision()
 
 		if (bHit)
 		{
+			CManager::GetInstance()->GetSound()->PlaySoundA(CSound::SOUND_LABEL_HIT);
+
 			CEffect_Hit::Create({ GetPos().x, 5.0f,  GetPos().z});
 			iter->SetDamage(1);
 			m_bPlayerBullet = false;
