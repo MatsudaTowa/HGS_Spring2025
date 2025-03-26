@@ -96,9 +96,6 @@ void CShadow::Draw()
 	//Zバッファに書き込まない
 	pDevice->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
-	//フォグの設定
-	pDevice->SetRenderState(D3DRS_FOGENABLE, FALSE);
-
 	//オブジェクトの描画
 	CObject3D::Draw(FILEPATH.c_str());
 
@@ -113,8 +110,6 @@ void CShadow::Draw()
 	//Zバッファに書き込む
 	pDevice->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
-	//フォグの設定
-	pDevice->SetRenderState(D3DRS_FOGENABLE, TRUE);
 }
 
 //============================

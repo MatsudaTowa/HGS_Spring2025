@@ -67,8 +67,116 @@ void CPlayer::Uninit()
 //============================
 void CPlayer::Update()
 {
+	//操作の処理
+	UpdateOperation();
+
 	//共通処理の更新
 	CGame_Character::Update();
+}
+
+//============================
+//操作の更新
+//============================
+void CPlayer::UpdateOperation()
+{
+	Move();
+
+	Attack();
+}
+
+//============================
+//移動処理
+//============================
+void CPlayer::Move()
+{
+	//判定用
+	bool bPressKey = false;
+	CCamera* pCamera = CManager::GetInstance()->GetCamera();
+	D3DXVECTOR3 move = GetMove();
+	D3DXVECTOR3 Rotgoal = GetGoalRot();
+
+	if (CManager::GetInstance()->GetKeyboard()->GetPress(DIK_A))
+	{//Aキーが押された場合
+		if (CManager::GetInstance()->GetKeyboard()->GetPress(DIK_W))
+		{
+			move.x += sinf(D3DX_PI * -0.75f - pCamera->GetRot().y) * 1.0f;
+			move.z -= cosf(D3DX_PI * -0.75f - pCamera->GetRot().y) * 1.0f;
+			Rotgoal.y = D3DX_PI * 0.75f + pCamera->GetRot().y;
+		}
+		else if (CManager::GetInstance()->GetKeyboard()->GetPress(DIK_S))
+		{
+			move.x += sinf(D3DX_PI * -0.25f - pCamera->GetRot().y) * 1.0f;
+			move.z -= cosf(D3DX_PI * -0.25f - pCamera->GetRot().y) * 1.0f;
+			Rotgoal.y = D3DX_PI * 0.25f + pCamera->GetRot().y;
+		}
+		else
+		{
+			move.x += sinf(D3DX_PI * -0.5f + pCamera->GetRot().y) * 1.0f;
+			move.z += cosf(D3DX_PI * -0.5f + pCamera->GetRot().y) * 1.0f;
+			Rotgoal.y = -(D3DX_PI * -0.5f - pCamera->GetRot().y);
+		}
+
+		bPressKey = true;	//キーボードを触っている
+	}
+	else if (CManager::GetInstance()->GetKeyboard()->GetPress(DIK_D))
+	{//Dキーが押された場合
+
+		if (CManager::GetInstance()->GetKeyboard()->GetPress(DIK_W))
+		{
+			move.x += sinf(D3DX_PI * 0.75f - pCamera->GetRot().y) * 1.0f;
+			move.z -= cosf(D3DX_PI * 0.75f - pCamera->GetRot().y) * 1.0f;
+			Rotgoal.y = D3DX_PI * -0.75f + pCamera->GetRot().y;
+		}
+		else if (CManager::GetInstance()->GetKeyboard()->GetPress(DIK_S))
+		{
+			move.x += sinf(D3DX_PI * 0.25f - pCamera->GetRot().y) * 1.0f;
+			move.z -= cosf(D3DX_PI * 0.25f - pCamera->GetRot().y) * 1.0f;
+			Rotgoal.y = D3DX_PI * -0.25f + pCamera->GetRot().y;
+		}
+		else
+		{
+			move.x += sinf(D3DX_PI * 0.5f + pCamera->GetRot().y) * 1.0f;
+			move.z += cosf(D3DX_PI * 0.5f + pCamera->GetRot().y) * 1.0f;
+			Rotgoal.y = -(D3DX_PI * 0.5f - pCamera->GetRot().y);
+		}
+
+		bPressKey = true;	//キーボードを触っている
+	}
+	else if (CManager::GetInstance()->GetKeyboard()->GetPress(DIK_W))
+	{//Wキーが押された場合
+		{
+			move.z -= cosf(D3DX_PI + pCamera->GetRot().y) * 1.0f;
+			move.x -= sinf(D3DX_PI + pCamera->GetRot().y) * 1.0f;
+			Rotgoal.y = D3DX_PI + pCamera->GetRot().y;
+		}
+
+		bPressKey = true;	//キーボードを触っている
+	}
+	else if (CManager::GetInstance()->GetKeyboard()->GetPress(DIK_S))
+	{//Sキーが押された場合
+		{
+			move.z -= cosf(pCamera->GetRot().y) * 1.0f;
+			move.x -= sinf(pCamera->GetRot().y) * 1.0f;
+			Rotgoal.y = pCamera->GetRot().y;
+		}
+
+		bPressKey = true;	//キーボードを触っている
+	}
+
+	SetMove(move);
+	SetGoalRot(Rotgoal);
+}
+
+//============================
+//攻撃処理
+//============================
+void CPlayer::Attack()
+{
+	//攻撃を押したら
+	if (CManager::GetInstance()->GetMouse()->GetTrigger(CInputMouse::MOUSEBUTTON_LEFT))
+	{
+		SetMotion(CPlayer::PLAYERMOTION_ACTION);
+	}
 }
 
 //============================

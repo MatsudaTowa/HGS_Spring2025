@@ -28,7 +28,7 @@ RECT g_windowRect;// ウィンドウを切り替えるための変数
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hInstancePrev, _In_ LPSTR lpcmpLine, _In_ int nCmdShow)
 {
 	//カーソルの非表示
-	ShowCursor(FALSE);
+	//ShowCursor(FALSE);
 
 	CManager* pManager = nullptr;
 
