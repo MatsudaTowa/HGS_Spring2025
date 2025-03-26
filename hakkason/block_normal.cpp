@@ -10,12 +10,12 @@
 #include "manager.h"
 
 //定数の初期化
-const std::string CBlock::FILEPATH = "data\\MODEL\\akarenga.x";
+const std::string CBlock_Normal::FILEPATH = "data\\MODEL\\akarenga.x";
 
 //============================
 //コンストラクタ
 //============================
-CBlock::CBlock(int nPriority) : CBlock(nPriority)
+CBlock_Normal::CBlock_Normal(int nPriority) : CBlock(nPriority)
 {
 
 }
@@ -23,7 +23,7 @@ CBlock::CBlock(int nPriority) : CBlock(nPriority)
 //============================
 //デストラクタ
 //============================
-CBlock::~CBlock()
+CBlock_Normal::~CBlock_Normal()
 {
 
 }
@@ -31,7 +31,7 @@ CBlock::~CBlock()
 //============================
 //初期化
 //============================
-HRESULT CBlock::Init()
+HRESULT CBlock_Normal::Init()
 {
 	return S_OK;
 }
@@ -39,7 +39,7 @@ HRESULT CBlock::Init()
 //============================
 //終了処理
 //============================
-void CBlock::Uninit()
+void CBlock_Normal::Uninit()
 {
 	//消去
 	SetDeath();
@@ -48,7 +48,7 @@ void CBlock::Uninit()
 //============================
 //更新
 //============================
-void CBlock::Update()
+void CBlock_Normal::Update()
 {
 
 }
@@ -56,7 +56,7 @@ void CBlock::Update()
 //============================
 //描画
 //============================
-void CBlock::Draw()
+void CBlock_Normal::Draw()
 {
 	CObjectX::Draw(FILEPATH.c_str());
 }

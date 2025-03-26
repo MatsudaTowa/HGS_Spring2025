@@ -14,6 +14,7 @@
 #include "enemy.h"
 #include "gamemanager.h"
 #include "renga.h"
+#include "blockmanager.h"
 
 //’è”
 const D3DXVECTOR3 CGame::TIME_POS = { SCREEN_WIDTH * 0.4f, 50.0f, 0.0f };
@@ -59,6 +60,7 @@ HRESULT CGame::Init()
 	CRenga::Create({ 200.0f, 0.0f, 0.0f });
 	CRenga* pRenga = CRenga::Create({ 0.0f, 0.0f, 200.0f });
 	pRenga->SetRot({ 0.0f, D3DX_PI * 0.5f, 0.0f });
+	CBlock::Create({ 50.0f, 0.0f, 0.0f }, CBlock::BLOCKTYPE_NORMAL);
 
 	SetWave(CWave::WAVE::ONE);
 

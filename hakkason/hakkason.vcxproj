@@ -153,6 +153,8 @@
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="block.cpp" />
+    <ClCompile Include="blockmanager.cpp" />
+    <ClCompile Include="block_normal.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="bulletmanager.cpp" />
     <ClCompile Include="camera.cpp" />
@@ -217,6 +219,7 @@
   <ItemGroup>
     <ClInclude Include="animation.h" />
     <ClInclude Include="block.h" />
+    <ClInclude Include="blockmanager.h" />
     <ClInclude Include="block_normal.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="bulletmanager.h" />

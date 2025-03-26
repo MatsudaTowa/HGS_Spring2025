@@ -7,6 +7,7 @@
 
 //ヘッダーのインクルード
 #include "block.h"
+#include "block_normal.h"
 #include "manager.h"
 #include "gamemanager.h"
 
@@ -79,6 +80,7 @@ CBlock* CBlock::Create(D3DXVECTOR3 pos, BLOCKTYPE type)
 	switch (type)
 	{
 	case BLOCKTYPE::BLOCKTYPE_NORMAL:
+		pBlock = new CBlock_Normal;
 		break;
 
 	default:
