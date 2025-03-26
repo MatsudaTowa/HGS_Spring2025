@@ -24,8 +24,8 @@ public:
 	void Update() override;									//更新
 	void Draw() override;									//描画
 private:
-	static const int LIFE = 20;
-	static const int SHOT_FRAME = 120;
+	static const int LIFE = 10;
+	static const int SHOT_FRAME = 240;
 	static const std::string FILEPATH;					//読み込むファイル
 };
 

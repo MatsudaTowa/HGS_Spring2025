@@ -26,7 +26,7 @@ public:
 	void Update() override;
 
 private:
-	static const int NUM_ENEMY = 5;
+	static const int NUM_ENEMY = 3;
 	static const CWave::EnemyInfo ENEMY_INFO[NUM_ENEMY];
 };
 
