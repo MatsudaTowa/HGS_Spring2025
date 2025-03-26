@@ -11,6 +11,7 @@
 #include "game.h"
 #include "modelparts.h"
 #include "camera.h"
+#include "bullet.h"
 
 //静的メンバの初期化
 const std::string CPlayer::FILEPATH = "data\\MODEL\\player001.x";
@@ -200,6 +201,7 @@ void CPlayer::Attack()
 	{
 		SetMotion(CPlayer::PLAYERMOTION_ACTION);	//モーション設定
 		m_nAttackCoolTime = ATTACK_COOLTIME;		//クールタイムを設定
+		CBullet::Create(GetPos(), GetRot().y + D3DX_PI, 1.0f);
 	}
 }
 
