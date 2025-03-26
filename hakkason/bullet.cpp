@@ -21,7 +21,8 @@ const std::string CBullet::FILEPATH = "data\\MODEL\\bullet.x";
 CBullet::CBullet(int nPriority) : CObjectX(nPriority),
 m_Speed({ 0.0f, 0.0f, 0.0f }),
 m_OldPos({ 0.0f, 0.0f, 0.0f }),
-m_bPlayerBullet(false)
+m_bPlayerBullet(false),
+m_nHansya(0)
 {
 	//マネージャーに登録
 	if (CGameManager::GetInstance()->GetBulletManager() != nullptr)
@@ -75,6 +76,11 @@ void CBullet::Update()
 	GetRot().y = atan2f(m_Speed.x, m_Speed.z);
 
 	if (!CManager::GetInstance()->GetCamera()->GetViewObject(GetPos()))
+	{
+		Uninit();
+	}
+
+	if (m_nHansya >= MAX_HANSYA)
 	{
 		Uninit();
 	}
@@ -159,6 +165,7 @@ void CBullet::Collision()
 			CEffect_Hit::Create({ GetPos().x, 5.0f,  GetPos().z});
 			iter->SetDamage(1);
 			m_bPlayerBullet = false;
+			m_nHansya++;
 		}
 	}
 
@@ -167,6 +174,7 @@ void CBullet::Collision()
 		GetPos().x = 150.0f - MaxSize.x;
 		m_Speed.x *= -1.0f;
 		m_bPlayerBullet = false;
+		m_nHansya++;
 	}
 
 	if (GetPos().x + MinSize.x < -150.0f)
@@ -174,6 +182,15 @@ void CBullet::Collision()
 		GetPos().x = -150.0f - MinSize.x;
 		m_Speed.x *= -1.0f;
 		m_bPlayerBullet = false;
+		m_nHansya++;
+	}
+
+	if (GetPos().z + MaxSize.z > 172.0f)
+	{
+		GetPos().z = 172.0f - MaxSize.z;
+		m_Speed.z *= -1.0f;
+		m_bPlayerBullet = false;
+		m_nHansya++;
 	}
 }
 
