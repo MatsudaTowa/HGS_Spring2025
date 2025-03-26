@@ -210,6 +210,7 @@
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="time.cpp" />
     <ClCompile Include="title.cpp" />
+    <ClCompile Include="title_screen.cpp" />
     <ClCompile Include="useful.cpp" />
     <ClCompile Include="wave.cpp" />
     <ClCompile Include="wave_one.cpp" />
@@ -275,6 +276,7 @@
     <ClInclude Include="texture.h" />
     <ClInclude Include="time.h" />
     <ClInclude Include="title.h" />
+    <ClInclude Include="title_screen.h" />
     <ClInclude Include="useful.h" />
     <ClInclude Include="wave.h" />
     <ClInclude Include="wave_one.h" />

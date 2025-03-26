@@ -8,6 +8,7 @@
 //ヘッダーのインクルード
 #include "title.h"
 #include "manager.h"
+#include "title_screen.h"
 
 //============================
 //タイトルのコンストラクタ
@@ -33,6 +34,7 @@ CTitle::~CTitle()
 //============================
 HRESULT CTitle::Init()
 {
+	CTitleScreen::Create({ SCREEN_WIDTH * 0.5f,SCREEN_HEIGHT * 0.5f,0.0f });
 	return S_OK;
 }
 
