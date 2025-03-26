@@ -20,6 +20,7 @@ public:
 	{
 		ENEMY_000 = 0,
 		ENEMY_001,
+		ENEMY_002,
 		ENMEY_MAX,
 	};
 

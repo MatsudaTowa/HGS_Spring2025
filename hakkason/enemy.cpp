@@ -11,6 +11,7 @@
 #include "gamemanager.h"
 #include "enemy_000.h"
 #include "enemy_001.h"
+#include "enemy_002.h"
 #include "manager.h"
 
 //============================
@@ -118,6 +119,9 @@ CEnemy* CEnemy::Create(D3DXVECTOR3 pos, ENEMY_TYPE type)
 		break;
 	case CEnemy::ENEMY_001:
 		pEnemy = new CEnemy_001;
+		break;
+	case CEnemy::ENEMY_002:
+		pEnemy = new CEnemy_002;
 		break;
 	default:
 		assert("範囲外のエネミータイプです");
