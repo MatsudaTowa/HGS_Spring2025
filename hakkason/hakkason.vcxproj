@@ -162,6 +162,7 @@
     <ClCompile Include="camera_result.cpp" />
     <ClCompile Include="camera_title.cpp" />
     <ClCompile Include="character.cpp" />
+    <ClCompile Include="cleartime.cpp" />
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="collision_view.cpp" />
     <ClCompile Include="debugproc.cpp" />
@@ -228,6 +229,7 @@
     <ClInclude Include="camera_result.h" />
     <ClInclude Include="camera_title.h" />
     <ClInclude Include="character.h" />
+    <ClInclude Include="cleartime.h" />
     <ClInclude Include="collision.h" />
     <ClInclude Include="collision_view.h" />
     <ClInclude Include="debugproc.h" />

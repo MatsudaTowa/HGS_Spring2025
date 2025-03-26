@@ -15,6 +15,7 @@
 #include "gamemanager.h"
 #include "renga.h"
 #include "blockmanager.h"
+#include "cleartime.h"
 
 //定数
 const D3DXVECTOR3 CGame::TIME_POS = { SCREEN_WIDTH * 0.4f, 50.0f, 0.0f };
@@ -62,6 +63,11 @@ HRESULT CGame::Init()
 	pRenga->SetRot({ 0.0f, D3DX_PI * 0.5f, 0.0f });
 	CBlock::Create({ 50.0f, 0.0f, 0.0f }, CBlock::BLOCKTYPE_NORMAL);
 
+	//クリアタイムの初期化
+	CClearTime::GetInstance()->ResetTime();
+	CClearTime::GetInstance()->SetPos({ SCREEN_WIDTH * 0.4f, 50.0f, 0.0f });
+	CClearTime::GetInstance()->Init();
+
 	SetWave(CWave::WAVE::ONE);
 
 	return S_OK;
@@ -81,6 +87,8 @@ void CGame::Uninit()
 //============================
 void CGame::Update()
 {
+	CClearTime::GetInstance()->AddTime(1.0f / 60.0f);
+
 	//マネージャーのインスタンスを取得
 	CManager* pManager = CManager::GetInstance();
 
