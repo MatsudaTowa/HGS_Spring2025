@@ -9,8 +9,10 @@
 const CWave_Three::EnemyInfo CWave_Three::ENEMY_INFO[NUM_ENEMY]
 {
 	{{100.0f,0.0f,0.0f},CEnemy::ENEMY_000},
-	{{-100.0f,0.0f,0.0f},CEnemy::ENEMY_000},
-	{{0.0f,0.0f,30.0f},CEnemy::ENEMY_002},
+	{{-100.0f,0.0f,0.0f},CEnemy::ENEMY_001},
+	{{0.0f,0.0f,50.0f},CEnemy::ENEMY_002},
+	{{100.0f,0.0f,100.0f},CEnemy::ENEMY_001},
+	{{-100.0f,0.0f,100.0f},CEnemy::ENEMY_000},
 };
 
 //=============================================

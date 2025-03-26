@@ -43,8 +43,8 @@ public:
 
 	CEnemy_002_State* m_pState;
 private:
-	static const int LIFE = 20;
-	static const int SHOT_FRAME = 240;
+	static const int LIFE = 30;
+	static const int SHOT_FRAME = 220;
 	static constexpr float SPEED = 1.0f;
 	static const std::string FILEPATH;					//ì«Ç›çûÇﬁÉtÉ@ÉCÉã
 };

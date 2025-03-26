@@ -163,6 +163,8 @@
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="collision_view.cpp" />
     <ClCompile Include="debugproc.cpp" />
+    <ClCompile Include="effect_billboard.cpp" />
+    <ClCompile Include="effect_hit.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemymanager.cpp" />
     <ClCompile Include="enemy_000.cpp" />
@@ -225,6 +227,8 @@
     <ClInclude Include="collision.h" />
     <ClInclude Include="collision_view.h" />
     <ClInclude Include="debugproc.h" />
+    <ClInclude Include="effect_billboard.h" />
+    <ClInclude Include="effect_hit.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="enemymanager.h" />
     <ClInclude Include="enemy_000.h" />
