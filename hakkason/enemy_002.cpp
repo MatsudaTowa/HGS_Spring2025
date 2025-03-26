@@ -104,8 +104,10 @@ void CEnemy_002::ShotBullet()
 		nCnt = 0;
 
 		CBullet::Create(GetPos(), GetRot().y + QRTR_PI + D3DX_PI, 1.0f, false);
+		CBullet::Create(GetPos(), GetRot().y + HALF_PI + D3DX_PI, 1.0f, false);
 		CBullet::Create(GetPos(), GetRot().y + D3DX_PI, 1.0f, false);
 		CBullet::Create(GetPos(), GetRot().y - QRTR_PI + D3DX_PI, 1.0f, false);
+		CBullet::Create(GetPos(), GetRot().y - HALF_PI + D3DX_PI, 1.0f, false);
 	}
 	SetShotFrameCnt(nCnt);
 

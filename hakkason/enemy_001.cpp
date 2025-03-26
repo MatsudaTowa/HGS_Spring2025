@@ -5,6 +5,7 @@
 // 
 //================================
 #include "enemy_001.h"
+#include "bullet.h"
 
 //静的メンバの初期化
 const std::string CEnemy_001::FILEPATH = "data\\motion_enemy001.txt";
@@ -12,7 +13,9 @@ const std::string CEnemy_001::FILEPATH = "data\\motion_enemy001.txt";
 //================================
 // コンストラクタ
 //================================
-CEnemy_001::CEnemy_001(int nPriority) :CEnemy(nPriority)
+CEnemy_001::CEnemy_001(int nPriority) :CEnemy(nPriority),
+m_nBurstDelayCnt(0),
+m_nShotBullet(0)
 {
 }
 
@@ -69,4 +72,33 @@ void CEnemy_001::Draw()
 {
 	//キャラクタークラスの描画
 	CCharacter::Draw();
+}
+
+//================================
+// 発射処理
+//================================
+void CEnemy_001::ShotBullet()
+{
+	LockAtPlayer();
+
+	int nCnt = GetShotFrameCnt();
+	++nCnt;
+
+	if (nCnt > GetShotFrame())
+	{
+		++m_nBurstDelayCnt;
+		if (m_nBurstDelayCnt > BURST_DELAY_FRAME)
+		{
+			m_nBurstDelayCnt = 0;
+			CBullet::Create(GetPos(), GetRot().y + D3DX_PI, 1.0f, false);
+			++m_nShotBullet;
+			if (m_nShotBullet >= NUM_SHOT)
+			{
+				m_nShotBullet = 0;
+				nCnt = 0;
+			}
+		}
+
+	}
+	SetShotFrameCnt(nCnt);
 }

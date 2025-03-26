@@ -23,10 +23,17 @@ public:
 	void Uninit() override;									//終了
 	void Update() override;									//更新
 	void Draw() override;									//描画
+
+	void ShotBullet()override;
 private:
 	static const int LIFE = 10;
-	static const int SHOT_FRAME = 240;
+	static const int SHOT_FRAME = 200;
+	static const int BURST_DELAY_FRAME = 20;
+	static const int NUM_SHOT = 3;
 	static const std::string FILEPATH;					//読み込むファイル
+
+	int m_nBurstDelayCnt;
+	int m_nShotBullet;
 };
 
 #endif
