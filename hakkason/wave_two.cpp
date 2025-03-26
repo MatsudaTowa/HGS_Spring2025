@@ -8,7 +8,7 @@
 
 const CWave_Two::EnemyInfo CWave_Two::ENEMY_INFO[NUM_ENEMY]
 {
-	{{50.0f,0.0f,0.0f},CEnemy::ENEMY_000},
+	{{50.0f,0.0f,0.0f},CEnemy::ENEMY_001},
 	{{-50.0f,0.0f,0.0f},CEnemy::ENEMY_000},
 	{{0.0f,0.0f,0.0f},CEnemy::ENEMY_000},
 };

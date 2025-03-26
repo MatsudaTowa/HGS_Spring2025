@@ -19,6 +19,7 @@ public:
 	enum ENEMY_TYPE
 	{
 		ENEMY_000 = 0,
+		ENEMY_001,
 		ENMEY_MAX,
 	};
 
