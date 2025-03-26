@@ -41,6 +41,7 @@ public:
 	inline int& GetShotFrame() { return m_ShotFrame; }
 	inline int& GetShotFrameCnt() { return m_ShotFrame_Cnt; }
 private:
+	void LockAtPlayer();
 	int m_ShotFrame;
 	int m_ShotFrame_Cnt;
 };

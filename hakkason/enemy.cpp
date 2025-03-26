@@ -7,6 +7,7 @@
 
 //ヘッダーのインクルード
 #include "enemy.h"
+#include "player.h"
 #include "gamemanager.h"
 #include "enemy_000.h"
 #include "enemy_001.h"
@@ -71,6 +72,8 @@ void CEnemy::Update()
 {
 	//共通処理の更新
 	CGame_Character::Update();
+
+	LockAtPlayer();
 
 	//マネージャーのインスタンスを取得
 	CManager* pManager = CManager::GetInstance();
@@ -140,4 +143,25 @@ bool CEnemy::SetDamage(int damage)
 	CGame_Character::SetDamage(damage);
 
 	return true;
+}
+
+//============================
+//プレイヤーのほうを見る
+//============================
+void CEnemy::LockAtPlayer()
+{
+	CPlayer* pPlayer = CGameManager::GetInstance()->GetPlayer();
+
+	//プレイヤーとの距離算出
+	D3DXVECTOR3 Distance = pPlayer->GetPos() - GetPos();
+
+	//プレイヤーに向ける角度を算出
+	float fAngle = atan2f(Distance.x, Distance.z);
+
+	//親クラスからrotを取得
+	D3DXVECTOR3 rot = GetRot();
+
+	rot.y = fAngle + D3DX_PI;
+
+	SetRot(rot);
 }
