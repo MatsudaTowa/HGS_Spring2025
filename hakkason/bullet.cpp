@@ -10,6 +10,7 @@
 #include "manager.h"
 #include "gamemanager.h"
 #include "bulletmanager.h"
+#include "effect_hit.h"
 
 //’è”‚Ì‰Šú‰»
 const std::string CBullet::FILEPATH = "data\\MODEL\\bullet.x";
@@ -70,6 +71,8 @@ void CBullet::Update()
 	SetPos(GetPos() + m_Speed);
 
 	Collision();
+
+	GetRot().y = atan2f(m_Speed.x, m_Speed.z);
 
 	if (!CManager::GetInstance()->GetCamera()->GetViewObject(GetPos()))
 	{
@@ -153,9 +156,24 @@ void CBullet::Collision()
 
 		if (bHit)
 		{
+			CEffect_Hit::Create({ GetPos().x, 5.0f,  GetPos().z});
 			iter->SetDamage(1);
 			m_bPlayerBullet = false;
 		}
+	}
+
+	if (GetPos().x + MaxSize.x > 150.0f)
+	{
+		GetPos().x = 150.0f - MaxSize.x;
+		m_Speed.x *= -1.0f;
+		m_bPlayerBullet = false;
+	}
+
+	if (GetPos().x + MinSize.x < -150.0f)
+	{
+		GetPos().x = -150.0f - MinSize.x;
+		m_Speed.x *= -1.0f;
+		m_bPlayerBullet = false;
 	}
 }
 

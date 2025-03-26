@@ -24,7 +24,7 @@ public:
 	}Polygon;
 
 	//メンバ関数
-	CObjectBillboard(int nPriority = 3);						//コンストラクタ
+	CObjectBillboard(int nPriority = 5);						//コンストラクタ
 	~CObjectBillboard() override;								//デストラクタ
 	HRESULT Init() override;									//初期化
 	void Uninit() override;										//終了
