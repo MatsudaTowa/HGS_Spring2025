@@ -195,6 +195,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="renga.cpp" />
     <ClCompile Include="result.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="shadow.cpp" />
@@ -252,6 +253,7 @@
     <ClInclude Include="precompile.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="renderer.h" />
+    <ClInclude Include="renga.h" />
     <ClInclude Include="result.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="shadow.h" />

@@ -13,6 +13,7 @@
 #include "field.h"
 #include "enemy.h"
 #include "gamemanager.h"
+#include "renga.h"
 
 //íËêî
 const D3DXVECTOR3 CGame::TIME_POS = { SCREEN_WIDTH * 0.4f, 50.0f, 0.0f };
@@ -54,6 +55,8 @@ HRESULT CGame::Init()
 
 	CPlayer::Create();
 	CField::Create();
+	CRenga::Create({ -200.0f, 0.0f, 0.0f });
+	CRenga::Create({ 200.0f, 0.0f, 0.0f });
 
 	SetWave(CWave::WAVE::ONE);
 

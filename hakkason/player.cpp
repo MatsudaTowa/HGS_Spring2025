@@ -242,9 +242,13 @@ void CPlayer::UpdateCoolTime()
 		//バレットリスト
 		std::list<CBullet*> BulletList = CGameManager::GetInstance()->GetBulletManager()->GetList();
 
+		//攻撃判定の生成
+		D3DXVECTOR3 AttackPos = GetPos();
+		AttackPos += {sinf(GetRot().y + D3DX_PI)* 5.0f, 0.0f, cosf(GetRot().y + D3DX_PI)* 5.0f};
+
 		for (auto& iter : BulletList)
 		{
-			float fXZ = sqrtf((iter->GetPos().x - GetPos().x) * (iter->GetPos().x - GetPos().x) + (iter->GetPos().z - GetPos().z) * (iter->GetPos().z - GetPos().z)); //距離を算出する
+			float fXZ = sqrtf((iter->GetPos().x - AttackPos.x) * (iter->GetPos().x - AttackPos.x) + (iter->GetPos().z - AttackPos.z) * (iter->GetPos().z - AttackPos.z)); //距離を算出する
 
 
 			if (fXZ <= 30.0f && !iter->GetPlayerBullet())
