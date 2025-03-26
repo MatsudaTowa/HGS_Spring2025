@@ -25,6 +25,7 @@ public:
 	void Draw() override;									//•`‰æ
 private:
 	static const int LIFE = 5;
+	static const int SHOT_FRAME = 90;
 	static const std::string FILEPATH;					//“Ç‚İ‚Şƒtƒ@ƒCƒ‹
 };
 

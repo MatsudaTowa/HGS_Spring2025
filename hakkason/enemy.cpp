@@ -15,7 +15,9 @@
 //エネミーのコンストラクタ
 //============================
 CEnemy::CEnemy(int nPriority) :
-	CGame_Character(nPriority)	//親のコンストラクタ
+	CGame_Character(nPriority),	//親のコンストラクタ
+	m_ShotFrame(0),				//発射フレーム
+	m_ShotFrame_Cnt(0)			//発射カウント
 {
 	//マネージャーに登録
 	CGameManager::GetInstance()->GetEnemyManager()->Regist(this);
@@ -69,6 +71,15 @@ void CEnemy::Update()
 
 	//マネージャーのインスタンスを取得
 	CManager* pManager = CManager::GetInstance();
+
+	++m_ShotFrame_Cnt;
+
+	if (m_ShotFrame_Cnt > m_ShotFrame)
+	{
+		m_ShotFrame_Cnt = 0;
+		CBullet::Create(GetPos(), GetRot().y + D3DX_PI, 1.0f);
+	}
+
 #ifdef _DEBUG
 	if (pManager->GetKeyboard()->GetTrigger(DIK_TAB))
 	{

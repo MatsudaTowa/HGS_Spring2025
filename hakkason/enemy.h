@@ -33,6 +33,15 @@ public:
 
 	//ダメージの設定
 	bool SetDamage(int damage) override;				//ダメージの設定
+
+	inline void SetShotFrame(int Frame) { m_ShotFrame = Frame; }
+	inline void SetShotFrameCnt(int FrameCnt) { m_ShotFrame_Cnt = FrameCnt; }
+
+	inline int& GetShotFrame() { return m_ShotFrame; }
+	inline int& GetShotFrameCnt() { return m_ShotFrame_Cnt; }
+private:
+	int m_ShotFrame;
+	int m_ShotFrame_Cnt;
 };
 
 #endif

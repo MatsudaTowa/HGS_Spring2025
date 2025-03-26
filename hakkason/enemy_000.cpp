@@ -31,6 +31,8 @@ HRESULT CEnemy_000::Init()
 	//‰Šú‰»
 	CGame_Character::Init();
 
+	SetShotFrame(SHOT_FRAME);
+
 	//ƒ‚[ƒVƒ‡ƒ“‚Ì“Ç‚İ‚İ
 	SetMotionInfo(FILEPATH.c_str());
 
