@@ -73,7 +73,7 @@ void CResult::Update()
 	if (CManager::GetInstance()->GetFade()->GetEnd())
 	{
 		//エンターで画面遷移
-		if (pManager->GetKeyboard()->GetTrigger(DIK_RETURN) || pManager->GetJoypad()->GetPress(CInputJoypad::JOYKEY_A) || pManager->GetJoypad()->GetPress(CInputJoypad::JOYKEY_START))
+		if (pManager->GetMouse()->GetTrigger((CInputMouse::MOUSEBUTTON_LEFT))||pManager->GetKeyboard()->GetTrigger(DIK_RETURN) || pManager->GetJoypad()->GetPress(CInputJoypad::JOYKEY_A) || pManager->GetJoypad()->GetPress(CInputJoypad::JOYKEY_START))
 		{
 			//タイトルに画面遷移
 			pManager->GetFade()->SetFade(CScene::MODE_TITLE);

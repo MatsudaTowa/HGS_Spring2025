@@ -63,7 +63,7 @@ void CTitle::Update()
 		if (pManager->GetMouse()->GetTrigger((CInputMouse::MOUSEBUTTON_LEFT))||pManager->GetKeyboard()->GetTrigger(DIK_RETURN) || pManager->GetJoypad()->GetPress(CInputJoypad::JOYKEY_A) || pManager->GetJoypad()->GetPress(CInputJoypad::JOYKEY_START))
 		{
 			//ƒQ[ƒ€‚É‰æ–Ê‘JˆÚ
-			pManager->GetFade()->SetFade(CScene::MODE_GAME);
+			pManager->GetFade()->SetFade(CScene::MODE_TUORIAL);
 		}
 	}
 }
@@ -73,5 +73,5 @@ void CTitle::Update()
 //============================
 void CTitle::Draw()
 {
-
 }
+

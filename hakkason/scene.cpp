@@ -9,6 +9,7 @@
 #include "scene.h"
 #include "object.h"
 #include "title.h"
+#include "tutorial.h"
 #include "game.h"
 #include "result.h"
 #include "manager.h"
@@ -94,6 +95,10 @@ CScene* CScene::Create(CScene::MODE mode)
 	{
 	case CScene::MODE_TITLE:	//タイトル
 		pScene = new CTitle();
+		break;
+
+	case CScene::MODE_TUORIAL:	//タイトル
+		pScene = new CTutorial();
 		break;
 
 	case CScene::MODE_GAME:		//ゲーム

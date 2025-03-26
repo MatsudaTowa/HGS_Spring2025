@@ -72,6 +72,7 @@ HRESULT CGame::Init()
 
 	CManager::GetInstance()->GetSound()->PlaySoundA(CSound::SOUND_LABEL_GAME);
 
+
 	return S_OK;
 }
 

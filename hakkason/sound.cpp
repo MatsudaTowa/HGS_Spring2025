@@ -22,6 +22,7 @@ const CSound::SOUNDINFO CSound::SOUND_INFO[CSound::SOUND_LABEL_MAX] =
 	{"data\\SE\\shot.wav", 0, 0.5f},				//ステージ中のBGM
 	{"data\\SE\\refrect.wav", 0, 0.5f},				//ステージ中のBGM
 	{"data\\SE\\swing.wav", 0, 0.25f},				//ステージ中のBGM
+	{"data\\BGM\\gameover.wav", -1, 0.5f},				//ステージ中のBGM
 };
 
 //=============================================================================

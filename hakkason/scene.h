@@ -20,6 +20,7 @@ public:
 	typedef enum
 	{
 		MODE_TITLE = 0,	//タイトル
+		MODE_TUORIAL,	//タイトル
 		MODE_GAME,		//ゲーム
 		MODE_RESULT,	//リザルト
 		MODE_GAMEOVER,	//ゲームオーバー
