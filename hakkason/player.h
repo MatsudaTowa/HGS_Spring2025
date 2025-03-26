@@ -19,6 +19,7 @@ public:
 	//定数
 	static constexpr int MAX_LIFE{ 20 };				//最大体力値
 	static const std::string FILEPATH;					//読み込むファイル
+	static constexpr int ATTACK_COOLTIME{ 30 };			//攻撃のクールタイム
 	
 	//キーの種類
 	typedef enum
@@ -47,6 +48,10 @@ private:
 	void UpdateOperation();	//操作の更新
 	void Move();			//移動処理
 	void Attack();			//攻撃処理
+	void UpdateCoolTime();	//クールタイムの更新
+
+	//変数
+	int m_nAttackCoolTime;	//攻撃のクールタイム
 
 
 };
