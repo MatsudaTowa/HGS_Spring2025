@@ -309,6 +309,8 @@ void CPlayer::Collision()
 
 		if (fXZ <= 15.0f && !iter->GetPlayerBullet())
 		{
+			CManager::GetInstance()->GetSound()->PlaySoundA(CSound::SOUND_LABEL_HIT);
+
 			CEffect_Hit::Create({ GetPos().x, 5.0f,  GetPos().z });
 			iter->Uninit();
 			SetDamage(1);
