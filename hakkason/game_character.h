@@ -34,7 +34,7 @@ public:
 	void UpdatePos() override;							//位置の更新
 	virtual D3DXVECTOR3 GravityMove(D3DXVECTOR3 move);	//重力の処理
 
-	void SetLife(int life) {m_nLife = life;}									//体力の設定
+	void SetLife(int life) { m_nLife = life; }									//体力の設定
 	int& GetLife() { return m_nLife; }											//体力を取得
 
 	//立ち状態
@@ -46,7 +46,7 @@ public:
 	float GetSizeRadius() { return m_fRadiusSize; }								//取得
 
 	//ダメージ処理
-	virtual bool SetDamage(int damage, float angle);							//取得
+	virtual bool SetDamage(int damage);							//取得
 
 	//当たり判定の情報
 	CCollision* GetCollision() { return m_pCollision; }				//当たり判定の取得

@@ -31,11 +31,6 @@ HRESULT CEnemy_000::Init()
 	//初期化
 	CGame_Character::Init();
 
-	//パラメータの初期化
-	CCharacter::SetRot({ 0.0f, 0.0f, 0.0f });
-	CCharacter::SetPos({ 0.0f, 0.0f, 0.0f });
-	CCharacter::SetGoalRot({ 0.0f, D3DX_PI, 0.0f });
-
 	//モーションの読み込み
 	SetMotionInfo(FILEPATH.c_str());
 
@@ -60,7 +55,7 @@ void CEnemy_000::Uninit()
 void CEnemy_000::Update()
 {
 	//更新
-	CGame_Character::Update();
+	CEnemy::Update();
 }
 
 //================================

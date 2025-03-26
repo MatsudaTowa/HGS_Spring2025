@@ -153,7 +153,7 @@ D3DXVECTOR3 CGame_Character::GravityMove(D3DXVECTOR3 move)
 //============================
 //キャラクターのダメージを設定
 //============================
-bool CGame_Character::SetDamage(int damage, float angle)
+bool CGame_Character::SetDamage(int damage)
 {
 	//ダメージを受ける
 	m_nLife -= damage;

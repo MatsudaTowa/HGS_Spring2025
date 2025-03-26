@@ -9,11 +9,12 @@
 #include "enemy.h"
 #include "gamemanager.h"
 #include "enemy_000.h"
+#include "manager.h"
 
 //============================
 //エネミーのコンストラクタ
 //============================
-CEnemy::CEnemy(int nPriority) : 
+CEnemy::CEnemy(int nPriority) :
 	CGame_Character(nPriority)	//親のコンストラクタ
 {
 	//マネージャーに登録
@@ -65,6 +66,16 @@ void CEnemy::Update()
 {
 	//共通処理の更新
 	CGame_Character::Update();
+
+	//マネージャーのインスタンスを取得
+	CManager* pManager = CManager::GetInstance();
+#ifdef _DEBUG
+	if (pManager->GetKeyboard()->GetTrigger(DIK_TAB))
+	{
+		SetDamage(1);
+	}
+
+#endif // _DEBUG
 }
 
 //============================
@@ -106,10 +117,10 @@ CEnemy* CEnemy::Create(D3DXVECTOR3 pos, ENEMY_TYPE type)
 //============================
 //ダメージの設定
 //============================
-bool CEnemy::SetDamage(int damage, float angle)
+bool CEnemy::SetDamage(int damage)
 {
 	//ダメージの設定
-	CGame_Character::SetDamage(damage, angle);
+	CGame_Character::SetDamage(damage);
 
 	return true;
 }

@@ -198,6 +198,10 @@
     <ClCompile Include="time.cpp" />
     <ClCompile Include="title.cpp" />
     <ClCompile Include="useful.cpp" />
+    <ClCompile Include="wave.cpp" />
+    <ClCompile Include="wave_one.cpp" />
+    <ClCompile Include="wave_three.cpp" />
+    <ClCompile Include="wave_two.cpp" />
     <ClCompile Include="xfile.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +250,10 @@
     <ClInclude Include="time.h" />
     <ClInclude Include="title.h" />
     <ClInclude Include="useful.h" />
+    <ClInclude Include="wave.h" />
+    <ClInclude Include="wave_one.h" />
+    <ClInclude Include="wave_three.h" />
+    <ClInclude Include="wave_two.h" />
     <ClInclude Include="xfile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

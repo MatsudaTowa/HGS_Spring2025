@@ -20,7 +20,7 @@ public:
 	static constexpr int MAX_LIFE{ 20 };				//最大体力値
 	static const std::string FILEPATH;					//読み込むファイル
 	static constexpr int ATTACK_COOLTIME{ 30 };			//攻撃のクールタイム
-	
+
 	//キーの種類
 	typedef enum
 	{
@@ -37,7 +37,7 @@ public:
 	void Uninit() override;								//終了
 	void Update() override;								//更新
 	void Draw() override;								//描画
-	bool SetDamage(int damage, float angle) override;	//ダメージを設定
+	bool SetDamage(int damage) override;	//ダメージを設定
 
 	//静的関数
 	static CPlayer* Create();	//Playerの生成

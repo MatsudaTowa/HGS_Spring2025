@@ -23,7 +23,9 @@ const std::string CGame::FILEPATH_MODEL = "data\\FILE\\model.bin";
 //============================
 CGame::CGame() :
 	m_bClear(false),	//クリア判定
-	m_bPause(false)		//ポーズ判定
+	m_bPause(false),	//ポーズ判定
+	m_next_wave(),		//次のウェーブ格納変数
+	m_pWave(nullptr)	//ウェーブ
 {
 	CGameManager::GetInstance()->Init();
 }
@@ -49,10 +51,11 @@ HRESULT CGame::Init()
 	//カメラを切り替え
 	CManager::GetInstance()->ChangeCamera(new CCamera_Game());
 
-	CEnemy::Create({VEC3_RESET_ZERO}, CEnemy::ENEMY_000);
 	CPlayer::Create();
 	CField::Create();
-	
+
+	SetWave(CWave::WAVE::ONE);
+
 	return S_OK;
 }
 
@@ -72,6 +75,43 @@ void CGame::Update()
 {
 	//マネージャーのインスタンスを取得
 	CManager* pManager = CManager::GetInstance();
+
+	if (CGameManager::GetInstance()->GetEnemyManager()->GetList().size() <= 0)
+	{
+		switch (m_pWave->GetCurrentWave())
+		{
+		case CWave::WAVE::ONE:
+			m_next_wave = CWave::WAVE::TWO;
+			break;
+		case CWave::WAVE::TWO:
+			m_next_wave = CWave::WAVE::THREE;
+			break;
+		case CWave::WAVE::THREE:
+			m_next_wave = CWave::WAVE::NONE;
+			break;
+		default:
+			assert("範囲外のウェーブです");
+			break;
+		}
+
+		if (m_next_wave != CWave::WAVE::NONE)
+		{
+			SetWave(m_next_wave);
+		}
+		else if (m_next_wave == CWave::WAVE::NONE)
+		{
+			//マネージャーのインスタンスを取得
+			CManager* pManager = CManager::GetInstance();
+
+			//リザルトに画面遷移
+			pManager->GetFade()->SetFade(CScene::MODE_RESULT);
+		}
+	}
+
+	if (m_pWave != nullptr)
+	{
+		m_pWave->Update();
+	}
 }
 
 //============================
@@ -79,7 +119,7 @@ void CGame::Update()
 //============================
 void CGame::Draw()
 {
-	
+
 }
 
 //============================

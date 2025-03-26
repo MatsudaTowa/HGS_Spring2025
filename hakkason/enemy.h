@@ -32,7 +32,7 @@ public:
 	static CEnemy* Create(D3DXVECTOR3 pos, ENEMY_TYPE type);							//エネミーの生成
 
 	//ダメージの設定
-	bool SetDamage(int damage, float angle) override;				//ダメージの設定
+	bool SetDamage(int damage) override;				//ダメージの設定
 };
 
 #endif

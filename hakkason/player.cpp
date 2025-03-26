@@ -219,7 +219,7 @@ void CPlayer::UpdateCoolTime()
 //============================
 //ダメージ時の処理
 //============================
-bool CPlayer::SetDamage(int damage, float angle)
+bool CPlayer::SetDamage(int damage)
 {
 	//ダメージを受ける
 	SetLife(GetLife() - damage);

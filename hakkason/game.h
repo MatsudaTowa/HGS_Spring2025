@@ -11,6 +11,7 @@
 //ヘッダーのインクルード
 #include "scene.h"
 #include "time.h"
+#include "wave.h"
 
 //ゲームクラス
 class CGame : public CScene
@@ -37,11 +38,31 @@ public:
 	void SetPause();						//ポーズの切り替え
 	bool GetPause() { return m_bPause; }	//ポーズの状態を取得
 
+	//ウェーブ設定
+	void SetWave(CWave::WAVE wave)
+	{
+		//ウェーブ終了
+		if (m_pWave != nullptr)
+		{
+			m_pWave->Uninit();
+			delete m_pWave;
+			m_pWave = nullptr;
+		}
+
+		//ウェーブ切り替え
+		if (m_pWave == nullptr)
+		{
+			m_pWave = CWave::Create(wave);
+		}
+	}
+
 private:
 
 	//判定
 	bool m_bClear;				//クリア判定
 	bool m_bPause;				//ポーズ中か
+	CWave* m_pWave;				//ウェーブ
+	CWave::WAVE m_next_wave;	//次呼ぶウェーブ
 };
 
 #endif
