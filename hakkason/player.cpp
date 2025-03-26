@@ -54,6 +54,8 @@ HRESULT CPlayer::Init()
 	//‰¼‚Ìƒ‰ƒCƒtÝ’è
 	SetLife(MAX_LIFE);
 
+	CGameManager::GetInstance()->SetPlayer(this);
+
 	return S_OK;
 }
 
