@@ -54,6 +54,7 @@ private:
 	void Attack();			//攻撃処理
 	void UpdateCoolTime();	//クールタイムの更新
 	void Limit();			//制限
+	void Collision();		//当たり判定
 
 	//変数
 	CGauge_PlayerLife* m_pLifeGauge;//体力ゲージのポインタ

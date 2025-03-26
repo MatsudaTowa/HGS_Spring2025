@@ -102,6 +102,8 @@ void CPlayer::Update()
 //============================
 void CPlayer::UpdateOperation()
 {
+	Collision();
+
 	//確認
 	if (m_nAttackCoolTime > 0) return;
 
@@ -270,6 +272,26 @@ void CPlayer::Limit()
 	if (GetPos().z < -150.0f)
 	{
 		GetPos().z = -150.0f;
+	}
+}
+
+//============================
+//当たり判定
+//============================
+void CPlayer::Collision()
+{
+	//バレットリスト
+	std::list<CBullet*> BulletList = CGameManager::GetInstance()->GetBulletManager()->GetList();
+
+	for (auto& iter : BulletList)
+	{
+		float fXZ = sqrtf((iter->GetPos().x - GetPos().x) * (iter->GetPos().x - GetPos().x) + (iter->GetPos().z - GetPos().z) * (iter->GetPos().z - GetPos().z)); //距離を算出する
+
+		if (fXZ <= 15.0f && !iter->GetPlayerBullet())
+		{
+			iter->Uninit();
+			SetDamage(1);
+		}
 	}
 }
 

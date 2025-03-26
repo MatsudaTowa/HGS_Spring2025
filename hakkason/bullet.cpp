@@ -70,6 +70,12 @@ void CBullet::Update()
 	SetPos(GetPos() + m_Speed);
 
 	Collision();
+
+	if (!CManager::GetInstance()->GetCamera()->GetViewObject(GetPos()))
+	{
+		Uninit();
+	}
+	
 }
 
 //============================
