@@ -34,7 +34,12 @@ public:
 	void SetSpeed(D3DXVECTOR3 speed) { m_Speed = speed; }	//İ’è
 	D3DXVECTOR3& GetSpeed() { return m_Speed; }				//æ“¾
 
+	int& GetHansya() { return m_nHansya; }
+
 private:
+
+	//’è”
+	static constexpr int MAX_HANSYA{ 10 };	//Å‘å”½Ë”
 
 	//ŠÖ”
 	void Collision();
@@ -43,6 +48,7 @@ private:
 	D3DXVECTOR3 m_Speed;
 	D3DXVECTOR3 m_OldPos;
 	bool m_bPlayerBullet;
+	int m_nHansya;
 
 };
 

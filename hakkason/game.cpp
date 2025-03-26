@@ -57,6 +57,8 @@ HRESULT CGame::Init()
 	CField::Create();
 	CRenga::Create({ -200.0f, 0.0f, 0.0f });
 	CRenga::Create({ 200.0f, 0.0f, 0.0f });
+	CRenga* pRenga = CRenga::Create({ 0.0f, 0.0f, 200.0f });
+	pRenga->SetRot({ 0.0f, D3DX_PI * 0.5f, 0.0f });
 
 	SetWave(CWave::WAVE::ONE);
 

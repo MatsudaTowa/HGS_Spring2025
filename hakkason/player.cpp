@@ -25,7 +25,7 @@ CPlayer::CPlayer(int nPriority) : CGame_Character(nPriority),
 	m_nAttackTrrigerCount(0),	//攻撃発動のカウント
 	m_pLifeGauge(nullptr)		//体力ゲージのポインタ
 {
-
+	CGame_Character::GetCollision()->SetRadius(13.0f);
 }
 
 //============================
@@ -254,6 +254,7 @@ void CPlayer::UpdateCoolTime()
 			if (fXZ <= 30.0f && !iter->GetPlayerBullet())
 			{
 				iter->GetSpeed() *= -1.3f;
+				iter->GetHansya()++;
 			}
 		}
 	}
@@ -276,6 +277,16 @@ void CPlayer::Limit()
 	if (GetPos().z < -150.0f)
 	{
 		GetPos().z = -150.0f;
+	}
+
+	if (GetPos().x + GetCollision()->GetRadius() > 150.0f)
+	{
+		GetPos().x = 150.0f - GetCollision()->GetRadius();
+	}
+
+	if (GetPos().x - GetCollision()->GetRadius() < -150.0f)
+	{
+		GetPos().x = -150.0f + GetCollision()->GetRadius();
 	}
 }
 
