@@ -165,6 +165,7 @@
     <ClCompile Include="enemymanager.cpp" />
     <ClCompile Include="enemy_000.cpp" />
     <ClCompile Include="fade.cpp" />
+    <ClCompile Include="field.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gamemanager.cpp" />
     <ClCompile Include="game_character.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="enemymanager.h" />
     <ClInclude Include="enemy_000.h" />
     <ClInclude Include="fade.h" />
+    <ClInclude Include="field.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gamemanager.h" />
     <ClInclude Include="game_character.h" />

@@ -10,9 +10,9 @@
 #include "manager.h"
 
 //定数
-const const std::string FILEPATH = "";
-static const D3DXVECTOR3 SIZE = {200.0f, 0.0f, 200.0f};	//サイズ
-static const D3DXVECTOR3 POS = {0.0f, 0.0f, 0.0f};		//位置
+const std::string CField::FILEPATH = "data\\TEXTURE\\FieldTexture000.jpeg";
+const D3DXVECTOR3 CField::SIZE = {200.0f, 0.0f, 200.0f};	//サイズ
+const D3DXVECTOR3 CField::POS = {0.0f, 0.0f, 0.0f};		//位置
 
 //============================
 //コンストラクタ
@@ -35,6 +35,7 @@ CField::~CField()
 //============================
 HRESULT CField::Init()
 {
+	CObject3D::Init();
 	return S_OK;
 }
 
@@ -59,7 +60,7 @@ void CField::Update()
 //============================
 void CField::Draw()
 {
-	//CObject3D::Draw(FILEPATH.c_str());
+	CObject3D::Draw(FILEPATH.c_str());
 }
 
 //============================
