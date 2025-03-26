@@ -16,6 +16,12 @@ class CEnemy : public CGame_Character
 {
 public:
 
+	enum ENEMY_TYPE
+	{
+		ENEMY_000 = 0,
+		ENMEY_MAX,
+	};
+
 	//メンバ関数
 	CEnemy(int nPriority = 3);	//コンストラクタ
 	virtual ~CEnemy() override;										//デストラクタ
@@ -23,7 +29,7 @@ public:
 	virtual void Uninit() override;									//終了
 	virtual void Update() override;									//更新
 	virtual void Draw() override;									//描画
-	static CEnemy* Create(D3DXVECTOR3 pos);							//エネミーの生成
+	static CEnemy* Create(D3DXVECTOR3 pos, ENEMY_TYPE type);							//エネミーの生成
 
 	//ダメージの設定
 	bool SetDamage(int damage, float angle) override;				//ダメージの設定

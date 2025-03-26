@@ -8,6 +8,7 @@
 //ヘッダーのインクルード
 #include "enemy.h"
 #include "gamemanager.h"
+#include "enemy_000.h"
 
 //============================
 //エネミーのコンストラクタ
@@ -77,10 +78,20 @@ void CEnemy::Draw()
 //============================
 //エネミーのクリエイト
 //============================
-CEnemy* CEnemy::Create(D3DXVECTOR3 pos)
+CEnemy* CEnemy::Create(D3DXVECTOR3 pos, ENEMY_TYPE type)
 {
 	//種類に応じて動的確保
 	CEnemy* pEnemy = nullptr;
+
+	switch (type)
+	{
+	case CEnemy::ENEMY_000:
+		pEnemy = new CEnemy_000;
+		break;
+	default:
+		assert("範囲外のエネミータイプです");
+		break;
+	}
 
 	//位置の設定
 	pEnemy->SetPos(pos);
