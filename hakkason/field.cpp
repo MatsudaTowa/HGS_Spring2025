@@ -11,7 +11,7 @@
 
 //定数
 const std::string CField::FILEPATH = "data\\TEXTURE\\FieldTexture000.jpeg";
-const D3DXVECTOR3 CField::SIZE = {200.0f, 0.0f, 200.0f};	//サイズ
+const D3DXVECTOR3 CField::SIZE = {1000.0f, 0.0f, 1000.0f};	//サイズ
 const D3DXVECTOR3 CField::POS = {0.0f, 0.0f, 0.0f};		//位置
 
 //============================

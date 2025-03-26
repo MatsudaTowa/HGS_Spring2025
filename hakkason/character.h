@@ -22,7 +22,7 @@ public:
 	//定数
 	static constexpr float ROTATE_SPEED{0.2f};		//回転の速度
 	static constexpr int INTERPOLATION_FRAME{6};	//モーションの補間カウント
-	static constexpr float SIZE_RADIUS{30.0f};		//サイズの半径
+	static constexpr float SIZE_RADIUS{20.0f};		//サイズの半径
 	static constexpr int MAX_MODEL{ 16 };			//読み込むモデルパーツの最大数
 	static constexpr int MAX_STRING{ 256 };			//読み込む文字の最大数
 

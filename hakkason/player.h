@@ -50,6 +50,7 @@ private:
 	void Move();			//移動処理
 	void Attack();			//攻撃処理
 	void UpdateCoolTime();	//クールタイムの更新
+	void Limit();			//制限
 
 	//変数
 	int m_nAttackCoolTime;		//攻撃のクールタイム

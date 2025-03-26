@@ -45,7 +45,7 @@ HRESULT CPlayer::Init()
 
 	//パラメータの初期化
 	CCharacter::SetRot({ 0.0f, 0.0f, 0.0f });
-	CCharacter::SetPos({ 0.0f, 0.0f, 0.0f });
+	CCharacter::SetPos({ 0.0f, 0.0f, -100.0f });
 	CCharacter::SetGoalRot({ 0.0f, D3DX_PI, 0.0f });
 
 	//モーションの読み込み
@@ -92,6 +92,8 @@ void CPlayer::UpdateOperation()
 	Move();
 
 	Attack();
+
+	Limit();
 }
 
 //============================
@@ -203,7 +205,7 @@ void CPlayer::Attack()
 	{
 		SetMotion(CPlayer::PLAYERMOTION_ACTION);	//モーション設定
 		m_nAttackCoolTime = ATTACK_COOLTIME;		//クールタイムを設定
-		CBullet::Create(GetPos(), GetRot().y + D3DX_PI, 1.0f, true);
+		CBullet::Create(GetPos(), GetGoalRot().y + D3DX_PI, 1.0f, true);
 	}
 }
 
@@ -229,7 +231,7 @@ void CPlayer::UpdateCoolTime()
 
 			if (fXZ <= 30.0f && !iter->GetPlayerBullet())
 			{
-				iter->GetSpeed() *= -1.0f;
+				iter->GetSpeed() *= -1.3f;
 			}
 		}
 	}
@@ -237,6 +239,22 @@ void CPlayer::UpdateCoolTime()
 	m_nAttackCoolTime--;
 
 	if (m_nAttackCoolTime <= 0) m_nAttackTrrigerCount = 0;
+}
+
+//============================
+//制限
+//============================
+void CPlayer::Limit()
+{
+	if (GetPos().z > -100.0f)
+	{
+		GetPos().z = -100.0f;
+	}
+
+	if (GetPos().z < -150.0f)
+	{
+		GetPos().z = -150.0f;
+	}
 }
 
 //============================

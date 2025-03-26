@@ -65,7 +65,7 @@ void CShadow::Update()
 	D3DXVECTOR3 Pos = *m_TargetPos;		//ターゲットの位置を取得
 	D3DXVECTOR3 Rot = GetRot();			//向き
 
-	Pos.y = 0.01f;		//高さだけ変更
+	Pos.y = 0.1f;		//高さだけ変更
 
 	//位置と向きを設定
 	SetPos(Pos);

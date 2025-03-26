@@ -45,7 +45,7 @@ HRESULT CCamera_Game::Init()
 	Rot.y = atan2f(PosR.x - PosV.x, PosR.z - PosV.z);
 	Rot.x = D3DX_PI * -0.1f;
 	fLength = LENGTH_NORMAL;
-	PosV = { 0.0f, 400.0f, -100.0f };
+	PosV = { 0.0f, 400.0f, -130.0f };
 	PosR = { 0.0f, 0.0f, 0.0f };
 
 	//ê›íË
