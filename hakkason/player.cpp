@@ -12,6 +12,7 @@
 #include "modelparts.h"
 #include "camera.h"
 #include "bullet.h"
+#include "gamemanager.h"
 
 //静的メンバの初期化
 const std::string CPlayer::FILEPATH = "data\\MODEL\\player001.x";
@@ -20,9 +21,10 @@ const std::string CPlayer::FILEPATH = "data\\MODEL\\player001.x";
 //プレイヤーのコンストラクタ
 //============================
 CPlayer::CPlayer(int nPriority) : CGame_Character(nPriority),
-	m_nAttackCoolTime(0)	//攻撃のクールタイム
+m_nAttackCoolTime(0),	//攻撃のクールタイム
+m_nAttackTrrigerCount(0)//攻撃発動のカウント
 {
-	
+
 }
 
 //============================
@@ -30,7 +32,7 @@ CPlayer::CPlayer(int nPriority) : CGame_Character(nPriority),
 //============================
 CPlayer::~CPlayer()
 {
-	
+
 }
 
 //============================
@@ -45,7 +47,7 @@ HRESULT CPlayer::Init()
 	CCharacter::SetRot({ 0.0f, 0.0f, 0.0f });
 	CCharacter::SetPos({ 0.0f, 0.0f, 0.0f });
 	CCharacter::SetGoalRot({ 0.0f, D3DX_PI, 0.0f });
-	
+
 	//モーションの読み込み
 	SetMotionInfo("data\\playermotion000.txt");
 
@@ -201,7 +203,7 @@ void CPlayer::Attack()
 	{
 		SetMotion(CPlayer::PLAYERMOTION_ACTION);	//モーション設定
 		m_nAttackCoolTime = ATTACK_COOLTIME;		//クールタイムを設定
-		CBullet::Create(GetPos(), GetRot().y + D3DX_PI, 1.0f);
+		CBullet::Create(GetPos(), GetRot().y + D3DX_PI, 1.0f, true);
 	}
 }
 
@@ -213,7 +215,28 @@ void CPlayer::UpdateCoolTime()
 	//クールタイムを減らす
 	if (m_nAttackCoolTime <= 0) return;
 
+	m_nAttackTrrigerCount++;
+
+	if (m_nAttackTrrigerCount == ATTACK_TRRIGER)
+	{
+		//バレットリスト
+		std::list<CBullet*> BulletList = CGameManager::GetInstance()->GetBulletManager()->GetList();
+
+		for (auto& iter : BulletList)
+		{
+			float fXZ = sqrtf((iter->GetPos().x - GetPos().x) * (iter->GetPos().x - GetPos().x) + (iter->GetPos().z - GetPos().z) * (iter->GetPos().z - GetPos().z)); //距離を算出する
+
+
+			if (fXZ <= 30.0f && !iter->GetPlayerBullet())
+			{
+				iter->GetSpeed() *= -1.0f;
+			}
+		}
+	}
+
 	m_nAttackCoolTime--;
+
+	if (m_nAttackCoolTime <= 0) m_nAttackTrrigerCount = 0;
 }
 
 //============================

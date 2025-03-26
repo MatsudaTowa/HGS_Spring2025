@@ -21,6 +21,8 @@ CEnemy::CEnemy(int nPriority) :
 {
 	//マネージャーに登録
 	CGameManager::GetInstance()->GetEnemyManager()->Regist(this);
+
+	CGame_Character::GetCollision()->SetRadius(13.0f);
 }
 
 //============================
@@ -77,7 +79,7 @@ void CEnemy::Update()
 	if (m_ShotFrame_Cnt > m_ShotFrame)
 	{
 		m_ShotFrame_Cnt = 0;
-		CBullet::Create(GetPos(), GetRot().y + D3DX_PI, 1.0f);
+		CBullet::Create(GetPos(), GetRot().y + D3DX_PI, 1.0f, false);
 	}
 
 #ifdef _DEBUG

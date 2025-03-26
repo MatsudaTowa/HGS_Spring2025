@@ -18,8 +18,9 @@ const std::string CBullet::FILEPATH = "data\\MODEL\\bullet.x";
 //コンストラクタ
 //============================
 CBullet::CBullet(int nPriority) : CObjectX(nPriority),
-	m_Speed({0.0f, 0.0f, 0.0f}),
-	m_OldPos({ 0.0f, 0.0f, 0.0f })
+m_Speed({ 0.0f, 0.0f, 0.0f }),
+m_OldPos({ 0.0f, 0.0f, 0.0f }),
+m_bPlayerBullet(false)
 {
 	//マネージャーに登録
 	if (CGameManager::GetInstance()->GetBulletManager() != nullptr)
@@ -147,6 +148,7 @@ void CBullet::Collision()
 		if (bHit)
 		{
 			iter->SetDamage(1);
+			m_bPlayerBullet = false;
 		}
 	}
 }
@@ -231,7 +233,7 @@ void CBullet::Draw()
 //============================
 //クリエイト
 //============================
-CBullet* CBullet::Create(D3DXVECTOR3 pos, float rot, float speed)
+CBullet* CBullet::Create(D3DXVECTOR3 pos, float rot, float speed, bool player)
 {
 	//ポインタ用の変数
 	CBullet* pObjectX;
@@ -243,6 +245,7 @@ CBullet* CBullet::Create(D3DXVECTOR3 pos, float rot, float speed)
 	pObjectX->SetPos(pos);					//位置の設定
 	pObjectX->SetRot({ 0.0f, rot , 0.0f });	//向き
 	pObjectX->m_Speed = { sinf(rot) * speed, 0.0f, cosf(rot) * speed };	//速度
+	pObjectX->m_bPlayerBullet = player;
 
 	//初期化
 	pObjectX->Init();
