@@ -10,6 +10,7 @@
 #include "manager.h"
 #include "camera_result.h"
 #include "cleartime.h"
+#include "result_bg.h"
 
 //定数
 const D3DXVECTOR3 CResult::TIME_POS = { SCREEN_WIDTH * 0.4f, 355.0f, 0.0f };
@@ -42,6 +43,8 @@ HRESULT CResult::Init()
 
 	//カメラを切り替え
 	CManager::GetInstance()->ChangeCamera(new CCamera_Result());
+
+	CResult_Bg::Create({ SCREEN_WIDTH * 0.5f,SCREEN_HEIGHT * 0.5f,0.0f });
 
 	//クリアタイムの初期化
 	CClearTime::GetInstance()->SetPos(TIME_POS);
