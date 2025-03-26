@@ -172,7 +172,10 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gamemanager.cpp" />
     <ClCompile Include="game_character.cpp" />
+    <ClCompile Include="gauge.cpp" />
+    <ClCompile Include="gauge_playerlife.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="lifegauge.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager.cpp" />
@@ -228,7 +231,10 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="gamemanager.h" />
     <ClInclude Include="game_character.h" />
+    <ClInclude Include="gauge.h" />
+    <ClInclude Include="gauge_playerlife.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="lifegauge.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="manager.h" />

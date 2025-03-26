@@ -21,8 +21,9 @@ const std::string CPlayer::FILEPATH = "data\\MODEL\\player001.x";
 //プレイヤーのコンストラクタ
 //============================
 CPlayer::CPlayer(int nPriority) : CGame_Character(nPriority),
-m_nAttackCoolTime(0),	//攻撃のクールタイム
-m_nAttackTrrigerCount(0)//攻撃発動のカウント
+	m_nAttackCoolTime(0),		//攻撃のクールタイム
+	m_nAttackTrrigerCount(0),	//攻撃発動のカウント
+	m_pLifeGauge(nullptr)		//体力ゲージのポインタ
 {
 
 }
@@ -51,6 +52,12 @@ HRESULT CPlayer::Init()
 	//モーションの読み込み
 	SetMotionInfo("data\\playermotion000.txt");
 
+	//ゲージの生成
+	if (m_pLifeGauge == nullptr)
+	{
+		m_pLifeGauge = CGauge_PlayerLife::Create(MAX_LIFE);
+	}
+
 	//仮のライフ設定
 	SetLife(MAX_LIFE);
 
@@ -66,6 +73,13 @@ void CPlayer::Uninit()
 {
 	//初期化
 	CGame_Character::Uninit();
+
+	//ゲージの消去
+	if (m_pLifeGauge != nullptr)
+	{
+		m_pLifeGauge->Uninit();
+		m_pLifeGauge = nullptr;
+	}
 }
 
 //============================
@@ -264,8 +278,33 @@ void CPlayer::Limit()
 //============================
 bool CPlayer::SetDamage(int damage)
 {
+	//体力がないなら更新しない
+	if (GetLife() <= 0)
+	{
+		return false;
+	}
+
+	//死亡フラグが立っていたら抜ける
+	if (GetDeath())
+	{
+		return true;
+	}
+
 	//ダメージを受ける
 	SetLife(GetLife() - damage);
+
+	//インスタンスの取得
+	CGauge_PlayerLife* pGauge = GetLifeGauge();
+
+	//体力ゲージに反映
+	if (pGauge != nullptr)
+	{
+		//ゲージに反映
+		pGauge->GetGauge()->AddGauge(-(float)damage);
+	}
+
+	//体力ゲージを設定
+	SetLifeGauge(pGauge);
 
 	//ダメージの設定
 	return true;
