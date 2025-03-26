@@ -6,6 +6,13 @@
 //=============================================
 #include "wave_two.h"
 
+const CWave_Two::EnemyInfo CWave_Two::ENEMY_INFO[NUM_ENEMY]
+{
+	{{50.0f,0.0f,0.0f},CEnemy::ENEMY_000},
+	{{-50.0f,0.0f,0.0f},CEnemy::ENEMY_000},
+	{{0.0f,0.0f,0.0f},CEnemy::ENEMY_000},
+};
+
 //=============================================
 //コンストラクタ
 //=============================================
@@ -27,8 +34,10 @@ HRESULT CWave_Two::Init()
 {
 	//初期化
 	CWave::Init();
-	CEnemy::Create({ -50.0f,0.0f,0.0f }, CEnemy::ENEMY_000);
-
+	for (int nCnt = 0; nCnt < NUM_ENEMY; ++nCnt)
+	{
+		CEnemy::Create(ENEMY_INFO[nCnt].pos, ENEMY_INFO[nCnt].type);
+	}
 	return S_OK;
 }
 

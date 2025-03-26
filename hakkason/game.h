@@ -58,11 +58,16 @@ public:
 
 private:
 
+	static const int WAVE_DELAY_FRAME = 15;
+
 	//判定
 	bool m_bClear;				//クリア判定
 	bool m_bPause;				//ポーズ中か
+	int m_DelayWaveCnt;			//ウェーブ遷移のディレイカウント
 	CWave* m_pWave;				//ウェーブ
 	CWave::WAVE m_next_wave;	//次呼ぶウェーブ
+
+	void TransitionWave();
 };
 
 #endif

@@ -45,6 +45,12 @@ public:
 protected:
 
 	WAVE m_CurrentWave; //現在のウェーブ
+
+	struct EnemyInfo
+	{
+		D3DXVECTOR3 pos;
+		CEnemy::ENEMY_TYPE type;
+	};
 };
 
 #endif

@@ -25,7 +25,8 @@ CGame::CGame() :
 	m_bClear(false),	//クリア判定
 	m_bPause(false),	//ポーズ判定
 	m_next_wave(),		//次のウェーブ格納変数
-	m_pWave(nullptr)	//ウェーブ
+	m_pWave(nullptr),	//ウェーブ
+	m_DelayWaveCnt(0)	//ウェーブ遷移カウント
 {
 	CGameManager::GetInstance()->Init();
 }
@@ -94,6 +95,21 @@ void CGame::Update()
 			break;
 		}
 
+		++m_DelayWaveCnt;
+		TransitionWave();
+	}
+
+	if (m_pWave != nullptr)
+	{
+		m_pWave->Update();
+	}
+}
+
+void CGame::TransitionWave()
+{
+	if (m_DelayWaveCnt >= WAVE_DELAY_FRAME)
+	{
+		m_DelayWaveCnt = 0;
 		if (m_next_wave != CWave::WAVE::NONE)
 		{
 			SetWave(m_next_wave);
@@ -106,11 +122,6 @@ void CGame::Update()
 			//リザルトに画面遷移
 			pManager->GetFade()->SetFade(CScene::MODE_RESULT);
 		}
-	}
-
-	if (m_pWave != nullptr)
-	{
-		m_pWave->Update();
 	}
 }
 
