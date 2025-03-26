@@ -22,6 +22,7 @@ public:
 		MODE_TITLE = 0,	//タイトル
 		MODE_GAME,		//ゲーム
 		MODE_RESULT,	//リザルト
+		MODE_GAMEOVER,	//ゲームオーバー
 		MODE_MAX,		//列挙の最大
 	}MODE;
 

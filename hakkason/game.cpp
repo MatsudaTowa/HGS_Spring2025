@@ -128,7 +128,7 @@ void CGame::Update()
 		CManager* pManager = CManager::GetInstance();
 
 		//ƒŠƒUƒ‹ƒg‚É‰æ–Ê‘JˆÚ
-		pManager->GetFade()->SetFade(CScene::MODE_RESULT);
+		pManager->GetFade()->SetFade(CScene::MODE_GAMEOVER);
 	}
 }
 

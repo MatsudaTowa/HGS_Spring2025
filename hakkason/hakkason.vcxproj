@@ -178,6 +178,8 @@
     <ClCompile Include="field.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gamemanager.cpp" />
+    <ClCompile Include="gameover.cpp" />
+    <ClCompile Include="gameover_bg.cpp" />
     <ClCompile Include="game_character.cpp" />
     <ClCompile Include="gauge.cpp" />
     <ClCompile Include="gauge_playerlife.cpp" />
@@ -246,6 +248,8 @@
     <ClInclude Include="field.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gamemanager.h" />
+    <ClInclude Include="gameover.h" />
+    <ClInclude Include="gameover_bg.h" />
     <ClInclude Include="game_character.h" />
     <ClInclude Include="gauge.h" />
     <ClInclude Include="gauge_playerlife.h" />

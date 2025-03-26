@@ -12,6 +12,7 @@
 #include "game.h"
 #include "result.h"
 #include "manager.h"
+#include "gameover.h"
 
 //静的メンバの初期化
 CScene::MODE CScene::m_Mode = CScene::MODE_TITLE;	//タイトルに初期化
@@ -101,6 +102,10 @@ CScene* CScene::Create(CScene::MODE mode)
 
 	case CScene::MODE_RESULT:	//リザルト
 		pScene = new CResult();
+		break;
+
+	case CScene::MODE_GAMEOVER:	//リザルト
+		pScene = new CGameover();
 		break;
 	}
 
