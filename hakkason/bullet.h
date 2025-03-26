@@ -30,8 +30,12 @@ public:
 
 private:
 
+	//ŠÖ”
+	void Collision();
+
 	//•Ï”
 	D3DXVECTOR3 m_Speed;
+	D3DXVECTOR3 m_OldPos;
 
 };
 

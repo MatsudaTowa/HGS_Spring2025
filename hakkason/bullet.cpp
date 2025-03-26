@@ -8,6 +8,7 @@
 //ヘッダーのインクルード
 #include "bullet.h"
 #include "manager.h"
+#include "gamemanager.h"
 
 //定数の初期化
 const std::string CBullet::FILEPATH = "data\\MODEL\\bullet.x";
@@ -16,7 +17,8 @@ const std::string CBullet::FILEPATH = "data\\MODEL\\bullet.x";
 //コンストラクタ
 //============================
 CBullet::CBullet(int nPriority) : CObjectX(nPriority),
-	m_Speed({0.0f, 0.0f, 0.0f})
+	m_Speed({0.0f, 0.0f, 0.0f}),
+	m_OldPos({ 0.0f, 0.0f, 0.0f })
 {
 	
 }
@@ -51,8 +53,93 @@ void CBullet::Uninit()
 //============================
 void CBullet::Update()
 {
+	//過去の位置
+	m_OldPos = GetPos();
+
 	//位置の更新
 	SetPos(GetPos() + m_Speed);
+
+	Collision();
+}
+
+//============================
+//当たり判定
+//============================
+void CBullet::Collision()
+{
+	//Xファイルの読み込み
+	CXfile* pCXfile = CManager::GetInstance()->GetXfile();
+
+	//敵リスト
+	std::list<CEnemy*> EnemyList = CGameManager::GetInstance()->GetEnemyManager()->GetList();
+
+	//エネミーのサイズを取得する変数
+	D3DXVECTOR3 MaxSize = pCXfile->GetAddress(pCXfile->Regist(CBullet::FILEPATH.c_str())).aSize.Max;
+	D3DXVECTOR3 MinSize = pCXfile->GetAddress(pCXfile->Regist(CBullet::FILEPATH.c_str())).aSize.Min;
+
+	for (auto& iter : EnemyList)
+	{
+		bool bHit = false;
+
+		//上の判定
+		if (GetPos().z + (MinSize.z) <= iter->GetPos().z + iter->GetCollision()->GetRadius()
+			&& GetPos().x + (MinSize.z) < iter->GetPos().x + (iter->GetCollision()->GetRadius())
+			&& GetPos().x + (MaxSize.z) > iter->GetPos().x - (iter->GetCollision()->GetRadius())
+			)
+		{
+			if (m_OldPos.z + (MinSize.z) >= iter->GetPos().z + iter->GetCollision()->GetRadius())
+			{
+				//位置の補正
+				GetPos().z = iter->GetPos().z + iter->GetCollision()->GetRadius() - (MinSize.z);
+				m_Speed.z *= -1.0f;
+				bHit = true;
+			}
+		}
+
+		//下の判定
+		if (GetPos().z + (MaxSize.z) > iter->GetPos().z - iter->GetCollision()->GetRadius()
+			&& m_OldPos.x + (MinSize.x) < iter->GetPos().x + iter->GetCollision()->GetRadius()
+			&& m_OldPos.x + (MaxSize.x) > iter->GetPos().x - iter->GetCollision()->GetRadius())
+		{
+			if (m_OldPos.z + MaxSize.z <= iter->GetPos().z - (iter->GetCollision()->GetRadius()))
+			{
+				GetPos().z = iter->GetPos().z - iter->GetCollision()->GetRadius() - MaxSize.z;
+				m_Speed.z *= -1.0f;
+				bHit = true;
+			}
+		}
+
+		//右の判定
+		if (GetPos().x - (MaxSize.z) < iter->GetPos().x + iter->GetCollision()->GetRadius() &&
+			m_OldPos.x - (MaxSize.z) >= iter->GetPos().x + iter->GetCollision()->GetRadius())
+		{
+			if (GetPos().z + MaxSize.z > iter->GetPos().z - iter->GetCollision()->GetRadius()
+				&& GetPos().z + MinSize.z < iter->GetPos().z + iter->GetCollision()->GetRadius())
+			{
+				GetPos().x = iter->GetPos().x + iter->GetCollision()->GetRadius() + MaxSize.z;
+				m_Speed.x *= -1.0f;
+				bHit = true;
+			}
+		}
+
+		//左の判定
+		if (GetPos().x + (MaxSize.z) > iter->GetPos().x - iter->GetCollision()->GetRadius() &&
+			m_OldPos.x + (MaxSize.z) <= iter->GetPos().x - iter->GetCollision()->GetRadius())
+		{
+			if (GetPos().z + MaxSize.z > iter->GetPos().z - iter->GetCollision()->GetRadius()
+				&& GetPos().z + MinSize.z < iter->GetPos().z + iter->GetCollision()->GetRadius())
+			{
+				GetPos().x = iter->GetPos().x - iter->GetCollision()->GetRadius() - (MaxSize.z);
+				m_Speed.x *= -1.0f;
+				bHit = true;
+			}
+		}
+
+		if (bHit)
+		{
+			iter->SetDamage(1);
+		}
+	}
 }
 
 //============================
