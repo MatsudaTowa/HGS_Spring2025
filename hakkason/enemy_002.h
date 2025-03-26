@@ -11,6 +11,11 @@
 //ヘッダーのインクルード
 #include "enemy.h"
 
+//=============================================
+//前方宣言
+//=============================================
+class CEnemy_002_State;
+
 //エネミークラス
 class CEnemy_002 : public CEnemy
 {
@@ -23,9 +28,24 @@ public:
 	void Uninit() override;									//終了
 	void Update() override;									//更新
 	void Draw() override;									//描画
+
+	void ShotBullet()override;
+
+	void ChangeState(CEnemy_002_State* state)
+	{
+		//今のステートを消し引数のステートに切り替える
+		if (m_pState != nullptr)
+		{
+			delete m_pState;
+			m_pState = state;
+		}
+	}
+
+	CEnemy_002_State* m_pState;
 private:
 	static const int LIFE = 20;
 	static const int SHOT_FRAME = 240;
+	static constexpr float SPEED = 1.0f;
 	static const std::string FILEPATH;					//読み込むファイル
 };
 

@@ -58,6 +58,8 @@ void CEnemy_000::Update()
 {
 	//çXêV
 	CEnemy::Update();
+	ShotBullet();
+
 }
 
 //================================

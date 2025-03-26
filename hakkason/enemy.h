@@ -33,6 +33,10 @@ public:
 	virtual void Draw() override;									//描画
 	static CEnemy* Create(D3DXVECTOR3 pos, ENEMY_TYPE type);							//エネミーの生成
 
+	virtual void ShotBullet();
+
+	void LockAtPlayer();
+
 	//ダメージの設定
 	bool SetDamage(int damage) override;				//ダメージの設定
 
@@ -42,7 +46,6 @@ public:
 	inline int& GetShotFrame() { return m_ShotFrame; }
 	inline int& GetShotFrameCnt() { return m_ShotFrame_Cnt; }
 private:
-	void LockAtPlayer();
 	int m_ShotFrame;
 	int m_ShotFrame_Cnt;
 };

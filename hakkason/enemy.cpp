@@ -74,18 +74,8 @@ void CEnemy::Update()
 	//共通処理の更新
 	CGame_Character::Update();
 
-	LockAtPlayer();
-
 	//マネージャーのインスタンスを取得
 	CManager* pManager = CManager::GetInstance();
-
-	++m_ShotFrame_Cnt;
-
-	if (m_ShotFrame_Cnt > m_ShotFrame)
-	{
-		m_ShotFrame_Cnt = 0;
-		CBullet::Create(GetPos(), GetRot().y + D3DX_PI, 1.0f, false);
-	}
 
 #ifdef _DEBUG
 	if (pManager->GetKeyboard()->GetTrigger(DIK_TAB))
@@ -147,6 +137,23 @@ bool CEnemy::SetDamage(int damage)
 	CGame_Character::SetDamage(damage);
 
 	return true;
+}
+
+//============================
+//弾発射
+//============================
+void CEnemy::ShotBullet()
+{
+	LockAtPlayer();
+
+	++m_ShotFrame_Cnt;
+
+	if (m_ShotFrame_Cnt > m_ShotFrame)
+	{
+		m_ShotFrame_Cnt = 0;
+
+		CBullet::Create(GetPos(), GetRot().y + D3DX_PI, 1.0f, false);
+	}
 }
 
 //============================
