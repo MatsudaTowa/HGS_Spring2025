@@ -10,6 +10,7 @@
 
 #include "game_character.h"
 #include "enemy.h"
+#include "gauge_playerlife.h"
 
 //プレイヤークラス
 class CPlayer : public CGame_Character
@@ -38,7 +39,9 @@ public:
 	void Uninit() override;								//終了
 	void Update() override;								//更新
 	void Draw() override;								//描画
-	bool SetDamage(int damage) override;	//ダメージを設定
+	bool SetDamage(int damage) override;				//ダメージを設定
+	void SetLifeGauge(CGauge_PlayerLife* gauge) { m_pLifeGauge = gauge; }	//体力ゲージの設定
+	CGauge_PlayerLife* GetLifeGauge() { return m_pLifeGauge; }				//体力ゲージの取得
 
 	//静的関数
 	static CPlayer* Create();	//Playerの生成
@@ -53,6 +56,7 @@ private:
 	void Limit();			//制限
 
 	//変数
+	CGauge_PlayerLife* m_pLifeGauge;//体力ゲージのポインタ
 	int m_nAttackCoolTime;		//攻撃のクールタイム
 	int m_nAttackTrrigerCount;	//攻撃発生のカウント
 
