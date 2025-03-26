@@ -12,7 +12,8 @@
 //コンストラクタ
 //============================
 CGameManager::CGameManager() :
-	m_pEnemyManager(nullptr)	//ゲームマネージャー
+	m_pEnemyManager(nullptr),	//エネミーマネージャー
+	m_pBulletmanager(nullptr)	//バレットマネージャー
 {
 
 }
@@ -30,9 +31,13 @@ CGameManager::~CGameManager()
 //============================
 void CGameManager::Init()
 {
-	//フェードの生成
+	//エネミーマネージャーの生成
 	m_pEnemyManager = new CEnemyManager();		//メモリ確保
 	m_pEnemyManager->Init();					//初期設定
+
+	//バレットマネージャー生成
+	m_pBulletmanager = new CBulletManager();	//メモリ確保
+	m_pBulletmanager->Init();					//初期設定
 }
 
 //============================

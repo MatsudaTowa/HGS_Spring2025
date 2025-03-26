@@ -9,6 +9,7 @@
 #include "bullet.h"
 #include "manager.h"
 #include "gamemanager.h"
+#include "bulletmanager.h"
 
 //定数の初期化
 const std::string CBullet::FILEPATH = "data\\MODEL\\bullet.x";
@@ -20,7 +21,11 @@ CBullet::CBullet(int nPriority) : CObjectX(nPriority),
 	m_Speed({0.0f, 0.0f, 0.0f}),
 	m_OldPos({ 0.0f, 0.0f, 0.0f })
 {
-	
+	//マネージャーに登録
+	if (CGameManager::GetInstance()->GetBulletManager() != nullptr)
+	{
+		CGameManager::GetInstance()->GetBulletManager()->Regist(this);
+	}
 }
 
 //============================
@@ -28,7 +33,11 @@ CBullet::CBullet(int nPriority) : CObjectX(nPriority),
 //============================
 CBullet::~CBullet()
 {
-
+	//マネージャーから削除
+	if (CGameManager::GetInstance()->GetBulletManager() != nullptr)
+	{
+		CGameManager::GetInstance()->GetBulletManager()->Erase(this);
+	}
 }
 
 //============================
