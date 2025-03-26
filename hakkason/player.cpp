@@ -13,6 +13,7 @@
 #include "camera.h"
 #include "bullet.h"
 #include "gamemanager.h"
+#include "effect_hit.h"
 
 //Ã“Iƒƒ“ƒo‚Ì‰Šú‰»
 const std::string CPlayer::FILEPATH = "data\\MODEL\\player001.x";
@@ -308,6 +309,7 @@ void CPlayer::Collision()
 
 		if (fXZ <= 15.0f && !iter->GetPlayerBullet())
 		{
+			CEffect_Hit::Create({ GetPos().x, 5.0f,  GetPos().z });
 			iter->Uninit();
 			SetDamage(1);
 		}
