@@ -217,6 +217,7 @@
   <ItemGroup>
     <ClInclude Include="animation.h" />
     <ClInclude Include="block.h" />
+    <ClInclude Include="block_normal.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="bulletmanager.h" />
     <ClInclude Include="camera.h" />

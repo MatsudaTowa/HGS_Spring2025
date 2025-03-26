@@ -11,6 +11,7 @@
 //ヘッダーのインクルード
 #include "enemymanager.h"
 #include "bulletmanager.h"
+#include "blockmanager.h"
 #include "player.h"
 
 //マネージャークラス
@@ -41,6 +42,7 @@ public:
 
 	CEnemyManager* GetEnemyManager() { return m_pEnemyManager; }	//エネミーマネージャーの取得
 	CBulletManager* GetBulletManager() { return m_pBulletmanager; }	//バレットマネージャーの取得
+	CBlockManager* GetBlockManager() { return m_pBlockManager; }	//ブロックマネージャーの取得
 	CPlayer* GetPlayer() { return m_pPlayer; }						//プレイヤーの取得
 
 private:
@@ -48,6 +50,7 @@ private:
 	//変数
 	CEnemyManager* m_pEnemyManager;
 	CBulletManager* m_pBulletmanager;
+	CBlockManager* m_pBlockManager;
 	CPlayer* m_pPlayer;
 };
 

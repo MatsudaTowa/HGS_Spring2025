@@ -8,6 +8,7 @@
 //ヘッダーのインクルード
 #include "block.h"
 #include "manager.h"
+#include "gamemanager.h"
 
 //定数の初期化
 const std::string CBlock::FILEPATH = "data\\MODEL\\block.x";
@@ -15,9 +16,11 @@ const std::string CBlock::FILEPATH = "data\\MODEL\\block.x";
 //============================
 //コンストラクタ
 //============================
-CBlock::CBlock(int nPriority) : CObjectX(nPriority)
+CBlock::CBlock(int nPriority) : CObjectX(nPriority),
+	m_BlockType(CBlock::BLOCKTYPE_NORMAL)
 {
-	
+	//マネージャーに登録
+	CGameManager::GetInstance()->GetBlockManager()->Regist(this);
 }
 
 //============================
@@ -25,7 +28,11 @@ CBlock::CBlock(int nPriority) : CObjectX(nPriority)
 //============================
 CBlock::~CBlock()
 {
-
+	//マネージャーから削除
+	if (CGameManager::GetInstance()->GetBlockManager() != nullptr)
+	{
+		CGameManager::GetInstance()->GetBlockManager()->Erase(this);
+	}
 }
 
 //============================
@@ -64,13 +71,25 @@ void CBlock::Draw()
 //============================
 //クリエイト
 //============================
-CBlock* CBlock::Create(D3DXVECTOR3 pos)
+CBlock* CBlock::Create(D3DXVECTOR3 pos, BLOCKTYPE type)
 {
 	//ポインタ用の変数
-	CBlock* pBlock;
+	CBlock* pBlock = nullptr;
+
+	switch (type)
+	{
+	case BLOCKTYPE::BLOCKTYPE_NORMAL:
+		break;
+
+	default:
+		assert("ブロック範囲外");
+		break;
+
+	}
 
 	//メモリの確保
 	pBlock = new CBlock;
+	pBlock->m_BlockType = type;
 
 	//パラメータの設定
 	pBlock->SetPos(pos);	//位置の設定

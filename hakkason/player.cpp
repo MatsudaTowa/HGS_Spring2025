@@ -223,7 +223,7 @@ void CPlayer::Attack()
 	{
 		SetMotion(CPlayer::PLAYERMOTION_ACTION);	//モーション設定
 		m_nAttackCoolTime = ATTACK_COOLTIME;		//クールタイムを設定
-		CBullet::Create(GetPos(), GetGoalRot().y + D3DX_PI, 1.0f, true);
+		//CBullet::Create(GetPos(), GetGoalRot().y + D3DX_PI, 1.0f, true);
 	}
 }
 
