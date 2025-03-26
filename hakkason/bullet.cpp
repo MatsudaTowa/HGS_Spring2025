@@ -169,6 +169,74 @@ void CBullet::Collision()
 		}
 	}
 
+	//敵リスト
+	std::list<CBlock*> BlockList = CGameManager::GetInstance()->GetBlockManager()->GetList();
+
+	for (auto& iter : BlockList)
+	{
+		bool bHit = false;
+
+		//上の判定
+		if (GetPos().z + (MinSize.z) <= iter->GetPos().z + 10.0f
+			&& GetPos().x + (MinSize.z) < iter->GetPos().x + (10.0f)
+			&& GetPos().x + (MaxSize.z) > iter->GetPos().x - (10.0f)
+			)
+		{
+			if (m_OldPos.z + (MinSize.z) >= iter->GetPos().z + 10.0f)
+			{
+				//位置の補正
+				GetPos().z = iter->GetPos().z + 10.0f - (MinSize.z);
+				m_Speed.z *= -1.0f;
+				bHit = true;
+			}
+		}
+
+		//下の判定
+		if (GetPos().z + (MaxSize.z) > iter->GetPos().z - 10.0f
+			&& m_OldPos.x + (MinSize.x) < iter->GetPos().x + 10.0f
+			&& m_OldPos.x + (MaxSize.x) > iter->GetPos().x - 10.0f)
+		{
+			if (m_OldPos.z + MaxSize.z <= iter->GetPos().z - (10.0f))
+			{
+				GetPos().z = iter->GetPos().z - 10.0f - MaxSize.z;
+				m_Speed.z *= -1.0f;
+				bHit = true;
+			}
+		}
+
+		//右の判定
+		if (GetPos().x - (MaxSize.z) < iter->GetPos().x + 10.0f &&
+			m_OldPos.x - (MaxSize.z) >= iter->GetPos().x + 10.0f)
+		{
+			if (GetPos().z + MaxSize.z > iter->GetPos().z - 10.0f
+				&& GetPos().z + MinSize.z < iter->GetPos().z + 10.0f)
+			{
+				GetPos().x = iter->GetPos().x + 10.0f + MaxSize.x;
+				m_Speed.x *= -1.0f;
+				bHit = true;
+			}
+		}
+
+		//左の判定
+		if (GetPos().x + (MaxSize.z) > iter->GetPos().x - 10.0f &&
+			m_OldPos.x + (MaxSize.z) <= iter->GetPos().x - 10.0f)
+		{
+			if (GetPos().z + MaxSize.z > iter->GetPos().z - 10.0f
+				&& GetPos().z + MinSize.z < iter->GetPos().z + 10.0f)
+			{
+				GetPos().x = iter->GetPos().x - 10.0f - (MaxSize.x);
+				m_Speed.x *= -1.0f;
+				bHit = true;
+			}
+		}
+
+		if (bHit)
+		{
+			m_bPlayerBullet = false;
+			m_nHansya++;
+		}
+	}
+
 	if (GetPos().x + MaxSize.x > 150.0f)
 	{
 		GetPos().x = 150.0f - MaxSize.x;

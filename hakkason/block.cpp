@@ -89,8 +89,6 @@ CBlock* CBlock::Create(D3DXVECTOR3 pos, BLOCKTYPE type)
 
 	}
 
-	//メモリの確保
-	pBlock = new CBlock;
 	pBlock->m_BlockType = type;
 
 	//パラメータの設定

@@ -118,6 +118,15 @@ void CGame::Update()
 	{
 		m_pWave->Update();
 	}
+
+	if (CGameManager::GetInstance()->GetPlayer()->GetLife() <= 0)
+	{
+		//マネージャーのインスタンスを取得
+		CManager* pManager = CManager::GetInstance();
+
+		//リザルトに画面遷移
+		pManager->GetFade()->SetFade(CScene::MODE_RESULT);
+	}
 }
 
 void CGame::TransitionWave()
